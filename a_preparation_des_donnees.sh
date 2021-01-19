@@ -27,7 +27,8 @@ grep -E "D016|DEP_016" liens_ign.txt | awk '{ printf("%s,D016\n", $0); }' > dep/
 grep -E "D017|DEP_017" liens_ign.txt | awk '{ printf("%s,D017\n", $0); }' > dep/D017.csv
 grep -E "D018|DEP_018" liens_ign.txt | awk '{ printf("%s,D018\n", $0); }' > dep/D018.csv
 grep -E "D019|DEP_019" liens_ign.txt | awk '{ printf("%s,D019\n", $0); }' > dep/D019.csv
-grep -E "D020|DEP_020" liens_ign.txt | awk '{ printf("%s,D020\n", $0); }' > dep/D020.csv
+grep -E "D02A|DEP_02A" liens_ign.txt | awk '{ printf("%s,D02A\n", $0); }' > dep/D02A.csv
+grep -E "D02A|DEP_02B" liens_ign.txt | awk '{ printf("%s,D02B\n", $0); }' > dep/D02B.csv
 grep -E "D021|DEP_021" liens_ign.txt | awk '{ printf("%s,D021\n", $0); }' > dep/D021.csv
 grep -E "D022|DEP_022" liens_ign.txt | awk '{ printf("%s,D022\n", $0); }' > dep/D022.csv
 grep -E "D023|DEP_023" liens_ign.txt | awk '{ printf("%s,D023\n", $0); }' > dep/D023.csv
