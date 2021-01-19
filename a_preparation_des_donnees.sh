@@ -113,3 +113,6 @@ grep -E "D976|DEP_976" liens_ign.txt | awk '{ printf("%s,D976\n", $0); }' > dep/
 
 #Fusion des fichiers csv
 cat dep/*csv > liens_par_dep.csv
+
+#Permet de supprimer les doublons
+sort -u liens_par_dep.csv -o liens_par_dep_clean.csv
