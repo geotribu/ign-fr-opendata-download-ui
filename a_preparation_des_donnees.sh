@@ -25,12 +25,13 @@ grep -F '.7z' liens_par_dep_clean.csv > liens_par_dep_clean_ext.csv
 #création du répertoire type
 mkdir type
 
-#Permet de créer des fichiers par type
+#Permet de créer des fichiers par type et de les trier par département
 declare -a StringArray=("BDTOPO_3-0_TOUSTHEMES" "PLANIGN__TIF_LAMB93" "ORTHOHR_1-0_RVB-0M20_JP2-E080_LAMB93" "BDFORET_V2")
 for val in ${StringArray[@]}; do
    echo $val
-   grep -E "$val" liens_par_dep_clean_ext.csv | awk '{ printf("%s,'$val'\n", $0); }' > type/$val.csv
+   grep -E "$val" liens_par_dep_clean_ext.csv | awk '{ printf("%s,'$val'\n", $0); }' | sort -s -k2,2 -t, > type/$val.csv 
+   awk -F',' -v OFS=',' '{if(a!=$2){printf (a!="")?"\n"$2:$2;a=$2} printf "%s%s",OFS,$1}END{print}' type/$val.csv > type/$val'_transpos.csv' #Transposition des tableaux
 done
 
 #Fusion des fichiers csv
-cat type/*csv > liens_par_type.csv
+#cat type/*csv > liens_par_type.csv
