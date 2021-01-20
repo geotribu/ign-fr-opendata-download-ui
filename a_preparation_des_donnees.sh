@@ -31,6 +31,7 @@ for val in ${StringArray[@]}; do
    echo $val
    grep -E "$val" liens_par_dep_clean_ext.csv | awk '{ printf("%s,'$val'\n", $0); }' | sort -s -k2,2 -t, > type/$val.csv 
    awk -F',' -v OFS=',' '{if(a!=$2){printf (a!="")?"\n"$2:$2;a=$2} printf "%s%s",OFS,$1}END{print}' type/$val.csv > type/$val'_transpos.csv' #Transposition des tableaux
+   { echo "dep,lien1,lien2,lien3,lien4,lien5,lien6,lien7,lien8,lien9,lien10,lien11,lien12,lien13,lien14,lien15,lien16,lien17,lien18,lien19,lien20"; cat type/$val'_transpos.csv'; } > type/$val'_transpos_head.csv' #Ajoute l'entête
 done
 
 #Fusion des fichiers csv
