@@ -30,7 +30,11 @@ for val in ${StringArray[@]}; do
    value="$(tr [A-Z] [a-z] <<< "${val//-/_}")"
    grep -E "$val" 3_liens_par_dep_clean_ext.csv | awk '{ printf("%s,'$val'\n", $0); }' | sort -s -k2,2 -t, > 4_type/$value.csv
    awk -F',' -v OFS=',' '{if(a!=$2){printf (a!="")?"\n"$2:$2;a=$2} printf "%s%s",OFS,$1}END{print}' 4_type/$value.csv > 4_type/$value'_transposition.csv' #Transposition des tableaux
-   { echo "dep,lien1,lien2,lien3,lien4,lien5,lien6,lien7,lien8,lien9,lien10,lien11,lien12,lien13,lien14,lien15,lien16,lien17,lien18,lien19,lien20,lien21,lien22,lien23,lien24"; cat 4_type/$value'_transposition.csv'; } > header_$value.csv #Ajout de l'entête
+   column=""
+   for ((i=1; i<=(20); i++)) {
+       column+=",lien"$i
+   }
+   { echo "dep""$column"; cat 4_type/$value'_transposition.csv'; } > header_$value.csv #Ajout de l'entête
    rm 5_dep_join_$value.geojson
    ogr2ogr -f "GeoJSON" -sql "select departement.DEP as dep, header_$value.lien1 as lien1, header_$value.lien2 as lien2, header_$value.lien3 as lien3, header_$value.lien4 as lien4 from departement left join 'header_$value.csv'.header_$value on departement.DEP = header_$value.dep" 5_dep_join_$value.geojson departement.shp #Jointure entre le fichier shp et le csv
    rm header_$value.csv
