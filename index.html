@@ -47,7 +47,7 @@
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 			     attribution: 'Fond de carte par les contributeurs <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
          }).addTo(map);
-         var tuiles = {"PLAN IGN": L.geoJSON(planign, {
+         var ign_type = {"PLAN IGN": L.geoJSON(planign, {
                        onEachFeature: function (f, l) {
                          l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
                                     '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
@@ -211,7 +211,7 @@
                       })
 
 }
- L.control.layers(tuiles).addTo(map);
+ L.control.layers(ign_type).addTo(map);
 
 
 
