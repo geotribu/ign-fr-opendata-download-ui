@@ -58,7 +58,8 @@
                         if (f.properties){
                             for(var key in f.properties){
                               if (key != "dep") {
-                              out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                               }                              }
                               l.bindPopup(out.join("<br />"), {
                                maxWidth : 1500
@@ -71,7 +72,8 @@
                          if (f.properties){
                              for(var key in f.properties){
                                if (key != "dep") {
-                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                 var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                 out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                                }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
@@ -84,7 +86,8 @@
                          if (f.properties){
                              for(var key in f.properties){
                                if (key != "dep") {
-                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                 var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                 out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                                }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
@@ -98,7 +101,8 @@
                          if (f.properties){
                              for(var key in f.properties){
                                if (key != "dep") {
-                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                 var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                 out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                                }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
@@ -111,7 +115,8 @@
                          if (f.properties){
                              for(var key in f.properties){
                                if (key != "dep") {
-                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                 var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                 out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                                }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
@@ -125,7 +130,8 @@
                          if (f.properties){
                              for(var key in f.properties){
                                if (key != "dep") {
-                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                 var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                 out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                                }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
@@ -138,7 +144,8 @@
                          if (f.properties){
                              for(var key in f.properties){
                                if (key != "dep") {
-                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                 var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                 out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                                }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
@@ -152,7 +159,8 @@
                          if (f.properties){
                              for(var key in f.properties){
                                if (key != "dep") {
-                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                 var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                 out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                                }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
@@ -166,7 +174,8 @@
                          if (f.properties){
                              for(var key in f.properties){
                                if (key != "dep") {
-                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                                 var targetValue = f.properties[key].substr(f.properties[key].lastIndexOf('/') + 1);
+                                 out.push(key+": "+'<a href="'+f.properties[key]+'">'+targetValue+'</a>');
                                }
                                }
                                l.bindPopup(out.join("<br />"), {
