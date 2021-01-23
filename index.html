@@ -95,7 +95,9 @@
                              for(var key in f.properties){
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                                }
-                               l.bindPopup(out.join("<br />"));
+                               l.bindPopup(out.join("<br />"), {
+                                maxWidth : 1200
+                            });
                            }
                          }}),
                       "DNSB-HAIES": L.geoJSON(dnsb_haies, {
