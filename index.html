@@ -66,7 +66,7 @@
                            });
                           }
                         }}).addTo(map),
-                      "BDTOPO 3-0 TOUSTHEMES": L.geoJSON(bdtopo, {
+                      "BDTOPO": L.geoJSON(bdtopo, {
                         onEachFeature: function popUp(f,l){
                          var out = [];
                          if (f.properties){
@@ -80,7 +80,7 @@
                             });
                            }
                          }}),
-                      "BDFORET V2": L.geoJSON(bdforet, {
+                      "BDFORET": L.geoJSON(bdforet, {
                         onEachFeature: function popUp(f,l){
                          var out = [];
                          if (f.properties){
