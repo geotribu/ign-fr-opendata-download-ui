@@ -14,13 +14,12 @@ for val in ${StringArray[@]}; do
       else
         grep -E "D$val|DEP_$val" 1_liens_ign.txt | awk '{ printf("%s,D'$val'\n", $0); }' > 2_dep/D$val.csv
       fi
-
 done
 
 # Permet de supprimer les doublons et conserve uniquement les liens avec une extension .7z
 cat 2_dep/*csv | sort -u | grep -F '.7z' > 3_liens_par_dep_clean_ext.csv
 
-# création du répertoire 4_type
+# Création du répertoire 4_type
 mkdir 4_type
 
 # Permet de créer des fichiers par type et de les trier par département
@@ -29,20 +28,14 @@ for val in ${StringArray[@]}; do
    echo $val
    value="$(tr [A-Z] [a-z] <<< "${val//-/_}")"
    grep -E "$val" 3_liens_par_dep_clean_ext.csv | awk '{ printf("%s,'$val'\n", $0); }' | sort -s -k2,2 -t, > 4_type/$value.csv
-   awk -F',' -v OFS=',' '{if(a!=$2){printf (a!="")?"\n"$2:$2;a=$2} printf "%s%s",OFS,$1}END{print}' 4_type/$value.csv > 4_type/$value'_transposition.csv' # Transposition des tableaux
+   awk -F',' -v OFS=',' '{if(a!=$2){printf (a!="")?"\n"$2:$2;a=$2} printf "%s%s",OFS,$1}END{}' 4_type/$value.csv > 4_type/$value'_transposition.csv' # Transposition des tableaux
 
-
-   count_column=$(head -2 4_type/$value'_transposition.csv' |tail -1 |tr '\,' '\n' |wc -l)
    column=""
-   column_sql=""
+   count_column=$(head -2 4_type/$value'_transposition.csv' |tail -1 |tr '\,' '\n' |wc -l)
    for ((i=1; i<=($count_column); i++)) {
        column+=",lien"$i
-       column_sql+=",header_"$value".lien"$i" as lien"$i
    }
-   # echo $column_sql
-   { echo "dep""$column"; cat 4_type/$value'_transposition.csv'; } > header_$value.csv # Ajout de l'entête
-   rm 5_dep_join_$value.geojson
-   ogr2ogr -f "GeoJSON" -sql "select departement.DEP as dep $column_sql  from departement left join 'header_$value.csv'.header_$value on departement.DEP = header_$value.dep" 5_dep_join_$value.geojson departement.shp # Jointure entre le fichier shp et le csv
-   rm header_$value.csv
-   echo "var $value=" | cat - 5_dep_join_$value.geojson > temp && mv temp 5_dep_join_$value.geojson
+   
+   { echo "dep""$column"; cat 4_type/$value'_transposition.csv'; } > 4_type/$value'_header.csv' # Ajout de l'entête
+   
 done
