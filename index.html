@@ -47,168 +47,132 @@
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 			     attribution: 'Fond de carte par les contributeurs <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
          }).addTo(map);
+
+
+
+
          var ign_type = {"PLAN IGN": L.geoJSON(planign, {
-                       onEachFeature: function (f, l) {
-                         l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                    '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                     maxWidth : 1200
-                                 }
-                          );
-                        }
-                        }),
+                       onEachFeature: function popUp(f,l){
+                        var out = [];
+                        if (f.properties){
+                            for(var key in f.properties){
+                              //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                              out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                              }
+                              l.bindPopup(out.join("<br />"), {
+                               maxWidth : 1200
+                           });
+                          }
+                        }}),
+
 
 
                       "BDTOPO 3-0 TOUSTHEMES": L.geoJSON(bdtopo, {
-                      onEachFeature: function (f, l) {
-                        l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                    maxWidth : 1200
-                                }
-                         );
-                       }
-                       }),
-
+                        onEachFeature: function popUp(f,l){
+                         var out = [];
+                         if (f.properties){
+                             for(var key in f.properties){
+                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
+                               l.bindPopup(out.join("<br />"), {
+                                maxWidth : 1200
+                            });
+                           }
+                         }}),
                       "BDFORET V2": L.geoJSON(bdforet, {
-                      onEachFeature: function (f, l) {
-                        l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                   '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                    maxWidth : 1200
-                                }
-                       );
-                      }
-                      }),
+                        onEachFeature: function popUp(f,l){
+                         var out = [];
+                         if (f.properties){
+                             for(var key in f.properties){
+                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
+                               l.bindPopup(out.join("<br />"), {
+                                maxWidth : 1200
+                            });
+                           }
+                         }}),
 
                       "ORTHOHR": L.geoJSON(orthohr, {
-                      onEachFeature: function (f, l) {
-                      l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                  maxWidth : 1200
-                              }
-                      );
-                      }
-                      }),
+                        onEachFeature: function popUp(f,l){
+                         var out = [];
+                         if (f.properties){
+                             for(var key in f.properties){
+                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
+                               l.bindPopup(out.join("<br />"));
+                           }
+                         }}),
                       "DNSB-HAIES": L.geoJSON(dnsb_haies, {
-                      onEachFeature: function (f, l) {
-                      l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                  maxWidth : 1200
-                              }
-                      );
-                      }
-                      })
-                      ,
+                        onEachFeature: function popUp(f,l){
+                         var out = [];
+                         if (f.properties){
+                             for(var key in f.properties){
+                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
+                               l.bindPopup(out.join("<br />"), {
+                                maxWidth : 1200
+                            });
+                           }
+                         }}),
 
                       "PARCELLAIRE_EXPRESS": L.geoJSON(parcellaire_express, {
-                      onEachFeature: function (f, l) {
-                      l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                  maxWidth : 1200
-                              }
-                      );
-                      }
-                      }),
-
+                        onEachFeature: function popUp(f,l){
+                         var out = [];
+                         if (f.properties){
+                             for(var key in f.properties){
+                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
+                               l.bindPopup(out.join("<br />"), {
+                                maxWidth : 1200
+                            });
+                           }
+                         }}),
                       "BDPARCELLAIRE": L.geoJSON(bdparcellaire, {
-                      onEachFeature: function (f, l) {
-                      l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                  maxWidth : 1200
-                              }
-                      );
-                      }
-                      }),
+                        onEachFeature: function popUp(f,l){
+                         var out = [];
+                         if (f.properties){
+                             for(var key in f.properties){
+                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
+                               l.bindPopup(out.join("<br />"), {
+                                maxWidth : 1200
+                            });
+                           }
+                         }}),
 
                       "RGEALTI": L.geoJSON(rgealti, {
-                      onEachFeature: function (f, l) {
-                      l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                  maxWidth : 1200
-                              }
-                      );
-                      }
-                      }),
+                                    onEachFeature: function popUp(f,l){
+                         var out = [];
+                         if (f.properties){
+                             for(var key in f.properties){
+                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
+                               l.bindPopup(out.join("<br />"), {
+                                maxWidth : 1200
+                            });
+                           }
+                         }}),
 
                       "BDORTHO": L.geoJSON(bdortho, {
-                      onEachFeature: function (f, l) {
-                      l.bindPopup( '<a href="'+f.properties.lien1+'">'+f.properties.lien1+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien2+'">'+f.properties.lien2+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien3+'">'+f.properties.lien3+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien4+'">'+f.properties.lien4+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien5+'">'+f.properties.lien5+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien6+'">'+f.properties.lien6+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien7+'">'+f.properties.lien7+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien8+'">'+f.properties.lien8+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien9+'">'+f.properties.lien9+'</a>'+'<br>'+
-                                 '<a href="'+f.properties.lien10+'">'+f.properties.lien10+'</a>', {
-                                  maxWidth : 1200
-                              }
-                      );
-                      }
-                      })
+                        onEachFeature: function popUp(f,l){
+                         var out = [];
+                         if (f.properties){
+                             for(var key in f.properties){
+                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
+                               l.bindPopup(out.join("<br />"), {
+                                maxWidth : 1200
+                            });
+                           }
+                         }})
 
 }
  L.control.layers(ign_type).addTo(map);
