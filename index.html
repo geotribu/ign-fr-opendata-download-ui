@@ -56,7 +56,6 @@
                         var out = [];
                         if (f.properties){
                             for(var key in f.properties){
-                              //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                               }
                               l.bindPopup(out.join("<br />"), {
@@ -64,15 +63,11 @@
                            });
                           }
                         }}),
-
-
-
                       "BDTOPO 3-0 TOUSTHEMES": L.geoJSON(bdtopo, {
                         onEachFeature: function popUp(f,l){
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
-                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                                }
                                l.bindPopup(out.join("<br />"), {
@@ -85,7 +80,6 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
-                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                                }
                                l.bindPopup(out.join("<br />"), {
@@ -99,7 +93,6 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
-                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                                }
                                l.bindPopup(out.join("<br />"));
@@ -110,7 +103,6 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
-                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                                }
                                l.bindPopup(out.join("<br />"), {
@@ -137,7 +129,6 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
-                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                                }
                                l.bindPopup(out.join("<br />"), {
@@ -151,7 +142,6 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
-                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                                }
                                l.bindPopup(out.join("<br />"), {
@@ -165,7 +155,6 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
-                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
                                }
                                l.bindPopup(out.join("<br />"), {
