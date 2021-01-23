@@ -1,5 +1,5 @@
 # Première étape : scraping de la page de l'IGN
-mkdir _temp/1_liens
+[ -d _temp/1_scraping_liens ] || mkdir -p _temp/1_scraping_liens
 
 # télécharge la page HTML (stream), extrait les liens et le stockent dans un fichier texte
 curl https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html |\
