@@ -32,7 +32,7 @@ for val in ${StringArray[@]}; do
    awk -F',' -v OFS=',' '{if(a!=$2){printf (a!="")?"\n"$2:$2;a=$2} printf "%s%s",OFS,$1}END{print}' 4_type/$value.csv > 4_type/$value'_transposition.csv' #Transposition des tableaux
 
 
-   count_column=$(awk -F, '{ print NF; exit }' 4_type/$value'_transposition.csv')
+   count_column=$(head -2 4_type/$value'_transposition.csv' |tail -1 |tr '\,' '\n' |wc -l)
    column=""
    column_sql=""
    for ((i=1; i<=($count_column); i++)) {
