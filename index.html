@@ -57,8 +57,9 @@
                         var out = [];
                         if (f.properties){
                             for(var key in f.properties){
+                              if (key != "dep") {
                               out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
-                              }
+                              }                              }
                               l.bindPopup(out.join("<br />"), {
                                maxWidth : 1500
                            });
@@ -69,8 +70,9 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
+                               if (key != "dep") {
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
-                               }
+                               }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
                             });
@@ -81,8 +83,9 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
+                               if (key != "dep") {
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
-                               }
+                               }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
                             });
@@ -94,8 +97,9 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
+                               if (key != "dep") {
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
-                               }
+                               }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
                             });
@@ -106,8 +110,9 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
+                               if (key != "dep") {
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
-                               }
+                               }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
                             });
@@ -119,9 +124,9 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
-                               //out.push('<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>'+);
+                               if (key != "dep") {
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
-                               }
+                               }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
                             });
@@ -132,8 +137,9 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
+                               if (key != "dep") {
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
-                               }
+                               }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
                             });
@@ -145,8 +151,9 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
+                               if (key != "dep") {
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
-                               }
+                               }                               }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
                             });
@@ -158,7 +165,9 @@
                          var out = [];
                          if (f.properties){
                              for(var key in f.properties){
+                               if (key != "dep") {
                                out.push(key+": "+'<a href="'+f.properties[key]+'">'+f.properties[key]+'</a>');
+                               }
                                }
                                l.bindPopup(out.join("<br />"), {
                                 maxWidth : 1500
