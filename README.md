@@ -1,6 +1,11 @@
-# ign-fr-opendata-download-ui
+# Script de génération d'une carte par départements des liens OpenData de l'IGN France
 
 BLA BLA BLA
+
+## Configuration
+
+Copier le fichier `example.env` en `.env` et adapter les paramaètres si besoin.
+
 ## Crédits
 
 - Florian Boret, Geotribu
