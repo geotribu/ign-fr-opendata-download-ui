@@ -63,7 +63,7 @@
                                maxWidth : 1500
                            });
                           }
-                        }}),
+                        }}).addTo(map),
                       "BDTOPO 3-0 TOUSTHEMES": L.geoJSON(bdtopo, {
                         onEachFeature: function popUp(f,l){
                          var out = [];
@@ -167,7 +167,7 @@
                          }})
 
 }
- L.control.layers(ign_type).addTo(map);
+ L.control.layers(ign_type,null,{collapsed:false}).addTo(map);
 
 
 
