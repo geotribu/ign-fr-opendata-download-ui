@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Carte des données IGN</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.0/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.0/dist/leaflet.js"></script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+
+
+      <style>
+      body {
+           padding: 0;
+           margin: 0;
+       }
+       html, body, #divcarte {
+           height: 100%;
+           width: 100%;
+       }
+
+
+      </style>
+
+  </head>
+
+  <body>
+    <div id="divcarte">
+
+    </div>
+
+
+    <script type="text/javascript">
+
+      //pour ajouter la carte et les tuiles vectorielles
+      var map = L.map("divcarte").setView([13.52, 2.07501], 4);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+			     attribution: 'Fond de carte par les contributeurs <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+         }).addTo(map);
+
+         var ign_bdforet=omnivore.topojson('output/departement_bdforet.json').on("ready", function() {attachPopups_ign_bdforet();});
+         var ign_bdortho=omnivore.topojson('output/departement_bdortho.json').on("ready", function() {attachPopups_ign_bdortho();});
+         var ign_bdparcellaire=omnivore.topojson('output/departement_bdparcellaire.json').on("ready", function() {attachPopups_ign_bdparcellaire();});
+         var ign_bdtopo=omnivore.topojson('output/departement_bdtopo.json').on("ready", function() {attachPopups_ign_bdtopo();});
+         var ign_dnsb_haies=omnivore.topojson('output/departement_dnsb_haies.json').on("ready", function() {attachPopups_ign_dnsb_haies();});
+         var ign_orthohr=omnivore.topojson('output/departement_orthohr.json').on("ready", function() {attachPopups_ign_orthohr();}).addTo(map);
+         var ign_parcellaire_express=omnivore.topojson('output/departement_parcellaire_express.json').on("ready", function() {attachPopups_ign_parcellaire_express();});
+         var ign_planign=omnivore.topojson('output/departement_planign.json').on("ready", function() {attachPopups_ign_planign();});
+         var ign_rgealti=omnivore.topojson('output/departement_rgealti.json').on("ready", function() {attachPopups_ign_rgealti();});
+
+
+// Popup ign_bdforet
+         function attachPopups_ign_bdforet() {
+        	// Create popups.
+            ign_bdforet.eachLayer(function popUp (layer) {
+
+              var props = layer.feature.properties;
+              var out = [];
+              if (props){
+                for(var key in props){
+                  if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                    if (layer.feature.properties[key] != "")  {
+                    var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                    out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                    }
+                  }
+                }
+              }
+              layer.bindPopup(out.join("<br />"), {
+               maxWidth : 1500
+           })
+            });
+         };
+// Popup ign_bdortho
+          function attachPopups_ign_bdortho() {
+           // Create popups.
+             ign_bdortho.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+// Popup ign_bdparcellaire
+          function attachPopups_ign_bdparcellaire() {
+           // Create popups.
+             ign_bdparcellaire.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+// Popup ign_bdtopo
+        function attachPopups_ign_bdtopo() {
+         // Create popups.
+           ign_bdtopo.eachLayer(function popUp (layer) {
+
+             var props = layer.feature.properties;
+             var out = [];
+             if (props){
+               for(var key in props){
+                 if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                   if (layer.feature.properties[key] != "")  {
+                   var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                   out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                   }
+                 }
+               }
+             }
+             layer.bindPopup(out.join("<br />"), {
+              maxWidth : 1500
+          })
+           });
+        };
+
+
+// Popup ign_dnsb_haies
+        function attachPopups_ign_dnsb_haies() {
+         // Create popups.
+           ign_dnsb_haies.eachLayer(function popUp (layer) {
+
+             var props = layer.feature.properties;
+             var out = [];
+             if (props){
+               for(var key in props){
+                 if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                   if (layer.feature.properties[key] != "")  {
+                   var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                   out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                   }
+                 }
+               }
+             }
+             layer.bindPopup(out.join("<br />"), {
+              maxWidth : 1500
+          })
+           });
+        };
+// Popup ign_orthohr
+          function attachPopups_ign_orthohr() {
+           // Create popups.
+             ign_orthohr.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+// Popup ign_parcellaire_express
+        function attachPopups_ign_parcellaire_express() {
+         // Create popups.
+           ign_parcellaire_express.eachLayer(function popUp (layer) {
+
+             var props = layer.feature.properties;
+             var out = [];
+             if (props){
+               for(var key in props){
+                 if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                   if (layer.feature.properties[key] != "")  {
+                   var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                   out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                   }
+                 }
+               }
+             }
+             layer.bindPopup(out.join("<br />"), {
+              maxWidth : 1500
+          })
+           });
+        };
+
+// Popup ign_planign
+          function attachPopups_ign_planign() {
+           // Create popups.
+             ign_planign.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+
+// Popup ign_rgealti
+          function attachPopups_ign_rgealti() {
+           // Create popups.
+             ign_rgealti.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+        var baseMaps = {
+              "BDFORET": ign_bdforet,
+              "BDORTHO": ign_bdortho,
+              "BDPARCELLAIRE": ign_bdparcellaire,
+              "BDTOPO": ign_bdtopo,
+              "DNSB-HAIES": ign_dnsb_haies,
+              "ORTHOHR": ign_orthohr,
+              "PARCELLAIRE EXPRESS": ign_parcellaire_express,
+              "PLANIGN": ign_planign,
+              "RGEALTI": ign_rgealti
+            };
+
+        L.control.layers(baseMaps,null,{collapsed:false}).addTo(map);
+
+
+    </script>
+
+  </body>
+</html>
