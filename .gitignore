@@ -1,0 +1,12 @@
+# configuration
+*.env
+!example.env
+
+# temp and log
+_temp/
+*.log
+
+# output files
+*.geojson
+!templates/*.geojson
+*.zip
