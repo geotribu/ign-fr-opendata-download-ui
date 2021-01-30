@@ -14,7 +14,7 @@ OUTPUT_DIR=$2
 IFS="," read -a ARRAY_FRANCE <<< $3
 
 # Création du répertoire parent
-[ -d $OUTPUT_FILE ] || mkdir -p $OUTPUT_DIR
+[ -d $OUTPUT_DIR ] || mkdir -p $OUTPUT_DIR
 
 # Permet de créer le fichier pour la France
 for val in ${ARRAY_FRANCE[@]}; do
