@@ -10,15 +10,15 @@ export TEMP_FOLDER_ABS="$(realpath "$TEMP_FOLDER")"
 IFS="," read -a ARRAY_DEPARTEMENTS <<< $LI_DEPARTEMENTS
 
 # on informe l'utilisateur
-echo "---------- Configuration ---------------" >> $LOG_FILE_ABS
+echo "---------- Configuration ----------" >> $LOG_FILE_ABS
 echo "Les fichiers intermédiaires seront stockés dans : $TEMP_FOLDER_ABS" >> $LOG_FILE_ABS
 echo "Nombre de départements configurés : ${#ARRAY_DEPARTEMENTS[@]}" >> $LOG_FILE_ABS
 echo "Fichier de journalisation (log) : $LOG_FILE_ABS" >> $LOG_FILE_ABS
 
 # c'est partiiiiiiiii
-echo -e "\n\n---------- Démarrage du script ---------------" >> $LOG_FILE_ABS
+echo -e "\n\n---------- Démarrage du script ----------" >> $LOG_FILE_ABS
 echo "Scraping du site de l'IGN pour extraire tous les liens"
 source scripts/1_scraper.sh $SOURCE_URL "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" >> $LOG_FILE_ABS
 
-# echo "Extraction de liens par départements"
-# source scripts/2_departements.sh >> $LOG_FILE_ABS
+echo -e "\n\n---------- Extraction de liens par départements ----------"  >> $LOG_FILE_ABS
+source scripts/2_departements.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP_FOLDER_ABS/2_departements $LI_DEPARTEMENTS >> $LOG_FILE_ABS

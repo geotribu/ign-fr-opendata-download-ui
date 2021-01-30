@@ -1,6 +1,6 @@
 # Première étape : scraping de la page de l'IGN
 
-# Le petit manuel qui 
+# Le petit manuel
 if [ "$1" == "-h" ] ; then
     echo "Usage: ./`basename $0` https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html liens_ign.txt"
     echo "Show this help: ./`basename $0` -h"
