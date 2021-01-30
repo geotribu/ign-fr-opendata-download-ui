@@ -16,9 +16,8 @@ IFS="," read -a ARRAY_FRANCE <<< $3
 # Création du répertoire parent
 [ -d $OUTPUT_FILE ] || mkdir -p $OUTPUT_DIR
 
-# Permet de créer des fichiers par département
+# Permet de créer des fichiers pour la France
 for val in ${ARRAY_FRANCE[@]}; do
-  val_t=$(echo $val | head -c 3)
-  echo "Extraction France : $val_t"
+  echo "Extraction France : $val"
   grep -E "FR|FX" $SOURCE_FILE | awk '{ printf("%s,FR\n", $0); }' >> $OUTPUT_DIR'/FR.csv'
 done
