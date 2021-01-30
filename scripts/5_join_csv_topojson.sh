@@ -16,7 +16,7 @@ IFS="," read -a ARRAY <<< $4
 if [ "$TYPE" == "departements" ] ; then
 STYPE="DEP"
 elif [ "$TYPE" == "regions" ] ; then
-STYPE="R"
+STYPE="REG"
 elif [ "$TYPE" == "france" ] ; then
 STYPE="FR"
 fi
