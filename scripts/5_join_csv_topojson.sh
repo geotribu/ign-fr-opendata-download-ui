@@ -36,7 +36,7 @@ for val in ${ARRAY[@]}; do
         column_list+="field"$i" "
     }
 
-    cp template/$TYPE'-avec-outre-mer.json' $OUTPUT_DIR/$TYPE"_"$value'.json'
+    cp templates/$TYPE'-avec-outre-mer.json' $OUTPUT_DIR/$TYPE"_"$value'.json'
 
     (cat $SOURCE_FILE/$value'_'$TYPE'_transposition.csv'; echo) | while IFS=, read -r $column_list; do
         column_json=""
