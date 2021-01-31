@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Deuxième étape : extraction des liens pour la France dans des fichiers CSV
 
 # Le petit manuel
@@ -20,5 +20,5 @@ IFS="," read -a ARRAY_FRANCE <<< $3
 # Permet de créer le fichier pour la France
 for val in ${ARRAY_FRANCE[@]}; do
   echo "Extraction France : $val"
-  grep -E "FR|FX" $SOURCE_FILE | awk '{ printf("%s,FR\n", $0); }' >> $OUTPUT_DIR'/FR.csv'
+  grep -E "$val" "$SOURCE_FILE" | awk '{ printf("%s,FR\n", $0); }' >> "$OUTPUT_DIR/FR.csv"
 done
