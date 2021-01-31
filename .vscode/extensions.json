@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "eriklynd.json-tools",
+        "mikestead.dotenv",
+        "timonwong.shellcheck",
+    ]
+}
