@@ -1,3 +1,4 @@
+#!/bin/sh
 # quatrième étape : Permet de créer des fichiers par catégrorie
 
 # Le petit manuel

@@ -1,3 +1,4 @@
+#!/bin/sh
 # Troisième étape : Permet de supprimer les doublons et conserve uniquement les liens avec une extension .7z
 
 # Le petit manuel

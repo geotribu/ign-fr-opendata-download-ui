@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Deuxième étape : extraction des liens par départements dans des fichiers CSV
 
 # Le petit manuel

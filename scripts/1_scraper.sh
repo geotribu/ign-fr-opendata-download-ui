@@ -1,3 +1,4 @@
+#!/bin/sh
 # Première étape : scraping de la page de l'IGN
 
 # Le petit manuel

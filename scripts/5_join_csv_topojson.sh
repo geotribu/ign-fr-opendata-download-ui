@@ -1,3 +1,4 @@
+#!/bin/sh
 # cinquième étape : Jointure du csv avec le fichier topojson
 
 # Le petit manuel

@@ -1,3 +1,4 @@
+#!/bin/sh
 # Deuxième étape : extraction des liens pour la France dans des fichiers CSV
 
 # Le petit manuel

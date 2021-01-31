@@ -1,3 +1,4 @@
+#!/bin/sh
 # Deuxième étape : extraction des liens pour les régions dans des fichiers CSV
 
 # Le petit manuel
