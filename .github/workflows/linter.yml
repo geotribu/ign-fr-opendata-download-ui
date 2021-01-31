@@ -2,12 +2,12 @@ name: Linter
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '**/*.sh'
       - '.github/workflows/linter.yml'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '**/*.sh'
       - '.github/workflows/linter.yml'
