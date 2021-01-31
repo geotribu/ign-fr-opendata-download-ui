@@ -23,7 +23,7 @@ jobs:
       - name: Install linter
         run: sudo apt install shellcheck
 
-      - name: Run linter
-        run: |
-          shellcheck ignfr2map.sh
-          shellcheck scripts/*.sh
+      # - name: Run linter
+      #   run: |
+      #     shellcheck ignfr2map.sh
+      #     shellcheck scripts/*.sh
