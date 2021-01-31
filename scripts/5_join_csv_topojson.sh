@@ -44,8 +44,7 @@ for val in ${ARRAY[@]}; do
               test="field$i"
               column_json+=',"lien'$i'":"'${!test}'"'
         }
-        sed -i 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$TYPE"_"$value'.json'
-        #echo 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$TYPE"_"$value'.json'
-    done
+        sed -i 's~,\"DEP\":\"'$field1'\"~,\"DEP\":\"'$field1'\"'${column_json}'~g' output/departement_$value.json
+    done <  _temp/4_csv_type/$value'_transposition.csv'
 
 done
