@@ -15,7 +15,6 @@ LOG_FILE_ABS="$(realpath "$LOG_FILE")"
 TEMP_FOLDER_ABS="$(realpath "$TEMP_FOLDER")"
 IFS="," read -a ARRAY_DEPARTEMENTS <<< $LI_DEPARTEMENTS
 IFS="," read -a ARRAY_REGIONS <<< $LI_REGIONS
-IFS="," read -a ARRAY_FRANCE <<< $LI_FRANCE
 
 # on informe l'utilisateur
 echo "---------- Configuration ----------" >> "$LOG_FILE_ABS"

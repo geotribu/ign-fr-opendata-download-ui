@@ -4,12 +4,16 @@
 
 Copier le fichier `example.env` en `.env` et adapter les paramètres si besoin.
 
+```bash
+mv example.env .env
+```
+
 ## Usage
 
 Lancer le script :
 
 ```bash
-bash scripts/6_run.sh
+bash ignfr2map.sh
 ```
 
 Placer les fichiers sur un serveur web et ouvrir le fichier `index.html` dans un navigateur internet.
