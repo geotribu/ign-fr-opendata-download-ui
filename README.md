@@ -18,6 +18,8 @@ bash ignfr2map.sh
 
 Placer les fichiers sur un serveur web et ouvrir le fichier `index.html` dans un navigateur internet.
 
+Exemple de carte en ligne [ici](https://geotribu.github.io/ign-fr-opendata-download-ui/index.html).
+
 ## Etapes
 
 1. Scraping du site de l'IGN
