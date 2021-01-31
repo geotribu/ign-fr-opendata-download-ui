@@ -4,12 +4,12 @@ on:
   push:
     branches: [ master ]
     paths:
-      - '**.sh'
+      - '**/*.sh'
       - '.github/workflows/linter.yml'
   pull_request:
     branches: [ master ]
     paths:
-      - '**.sh'
+      - '**/*.sh'
       - '.github/workflows/linter.yml'
 
 jobs:
