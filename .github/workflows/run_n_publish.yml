@@ -5,7 +5,7 @@ on:
     - cron: "0 0 1 * *"  # monthly
   workflow_dispatch:     # to trigger manually
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths:
       - '.github/workflows/run_n_publish.yml'
 
