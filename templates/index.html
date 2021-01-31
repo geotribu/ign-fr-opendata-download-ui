@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Carte des données IGN</title>
+    <title>ign2map - Carte des données IGN</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.0/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.7.0/dist/leaflet.js"></script>
     <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
@@ -36,18 +36,39 @@
       var map = L.map("divcarte").setView([13.52, 2.07501], 4);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-			     attribution: 'Fond de carte par les contributeurs <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+			     attribution: '<a href="https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html">IGN - Téléchargement de données libres</a> | Fond de carte par les contributeurs <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
          }).addTo(map);
 
-         var ign_bdforet=omnivore.topojson('output/departement_bdforet.json').on("ready", function() {attachPopups_ign_bdforet();});
-         var ign_bdortho=omnivore.topojson('output/departement_bdortho.json').on("ready", function() {attachPopups_ign_bdortho();});
-         var ign_bdparcellaire=omnivore.topojson('output/departement_bdparcellaire.json').on("ready", function() {attachPopups_ign_bdparcellaire();});
-         var ign_bdtopo=omnivore.topojson('output/departement_bdtopo.json').on("ready", function() {attachPopups_ign_bdtopo();});
-         var ign_dnsb_haies=omnivore.topojson('output/departement_dnsb_haies.json').on("ready", function() {attachPopups_ign_dnsb_haies();});
-         var ign_orthohr=omnivore.topojson('output/departement_orthohr.json').on("ready", function() {attachPopups_ign_orthohr();}).addTo(map);
-         var ign_parcellaire_express=omnivore.topojson('output/departement_parcellaire_express.json').on("ready", function() {attachPopups_ign_parcellaire_express();});
-         var ign_planign=omnivore.topojson('output/departement_planign.json').on("ready", function() {attachPopups_ign_planign();});
-         var ign_rgealti=omnivore.topojson('output/departement_rgealti.json').on("ready", function() {attachPopups_ign_rgealti();});
+         var ign_bdforet=omnivore.topojson('output/departements_bdforet.json').on("ready", function() {attachPopups_ign_bdforet();});
+         var ign_bdortho=omnivore.topojson('output/departements_bdortho.json').on("ready", function() {attachPopups_ign_bdortho();});
+         var ign_bdparcellaire=omnivore.topojson('output/departements_bdparcellaire.json').on("ready", function() {attachPopups_ign_bdparcellaire();});
+         var ign_bdtopo=omnivore.topojson('output/departements_bdtopo.json').on("ready", function() {attachPopups_ign_bdtopo();});
+         var ign_dnsb_haies=omnivore.topojson('output/departements_dnsb_haies.json').on("ready", function() {attachPopups_ign_dnsb_haies();});
+         var ign_orthohr=omnivore.topojson('output/departements_orthohr.json').on("ready", function() {attachPopups_ign_orthohr();}).addTo(map);
+         var ign_parcellaire_express=omnivore.topojson('output/departements_parcellaire_express.json').on("ready", function() {attachPopups_ign_parcellaire_express();});
+         var ign_planign=omnivore.topojson('output/departements_planign.json').on("ready", function() {attachPopups_ign_planign();});
+         var ign_rgealti=omnivore.topojson('output/departements_rgealti.json').on("ready", function() {attachPopups_ign_rgealti();});
+
+
+         var ign_scanem40k=omnivore.topojson('output/regions_scanem40k.json').on("ready", function() {attachPopups_ign_scanem40k();});
+         var ign_scan50_historique=omnivore.topojson('output/regions_scan50_historique.json').on("ready", function() {attachPopups_ign_scan50_historique();});
+         var ign_rpg=omnivore.topojson('output/regions_rpg.json').on("ready", function() {attachPopups_ign_rpg();});
+         var ign_bdtopo2=omnivore.topojson('output/regions_bdtopo.json').on("ready", function() {attachPopups_ign_bdtopo2();});
+
+         var ign_admin_express=omnivore.topojson('output/france_admin_express.json').on("ready", function() {attachPopups_ign_admin_express();});
+         var ign_bdalti=omnivore.topojson('output/france_bdalti.json').on("ready", function() {attachPopups_ign_bdalti();});
+         var ign_geofla=omnivore.topojson('output/france_geofla.json').on("ready", function() {attachPopups_ign_geofla();});
+         var ign_bdpr=omnivore.topojson('output/france_bdpr.json').on("ready", function() {attachPopups_ign_bdpr();});
+         var ign_bdtopo3=omnivore.topojson('output/france_bdtopo.json').on("ready", function() {attachPopups_ign_bdtopo3();});
+         var ign_contours_iris=omnivore.topojson('output/france_contours_iris.json').on("ready", function() {attachPopups_ign_contours_iris();});
+         var ign_geodesie=omnivore.topojson('output/france_geodesie.json').on("ready", function() {attachPopups_ign_geodesie();});
+         var ign_parcellaire_express2=omnivore.topojson('output/france_parcellaire_express.json').on("ready", function() {attachPopups_ign_parcellaire_express2();});
+         var ign_planign2=omnivore.topojson('output/france_planign.json').on("ready", function() {attachPopups_ign_planign2();});
+         var ign_route500=omnivore.topojson('output/france_route500.json').on("ready", function() {attachPopups_ign_route500();});
+         var ign_rpg2=omnivore.topojson('output/france_rpg.json').on("ready", function() {attachPopups_ign_rpg2();});
+         var ign_scan1000=omnivore.topojson('output/france_scan1000.json').on("ready", function() {attachPopups_ign_scan1000();});
+         var ign_scanreg=omnivore.topojson('output/france_scanreg.json').on("ready", function() {attachPopups_ign_scanreg();});
+
 
 
 // Popup ign_bdforet
@@ -255,17 +276,408 @@
             })
              });
           };
+//////////////////////////////////////////////////////////
 
+// Popup ign_bdtopo2
+          function attachPopups_ign_bdtopo2() {
+           // Create popups.
+             ign_bdtopo2.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+// Popup ign_scanem40k
+          function attachPopups_ign_scanem40k() {
+           // Create popups.
+             ign_scanem40k.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+// Popup ign_rpg
+          function attachPopups_ign_rpg() {
+           // Create popups.
+             ign_rpg.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+// Popup ign_scan50_historique
+          function attachPopups_ign_scan50_historique() {
+           // Create popups.
+             ign_scan50_historique.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+// Popup ign_admin_express
+          function attachPopups_ign_admin_express() {
+           // Create popups.
+             ign_admin_express.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+// Popup ign_bdalti
+          function attachPopups_ign_bdalti() {
+           // Create popups.
+             ign_bdalti.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+          function attachPopups_ign_geofla() {
+           // Create popups.
+             ign_geofla.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+
+          function attachPopups_ign_bdpr() {
+           // Create popups.
+             ign_bdpr.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_bdtopo3() {
+           // Create popups.
+             ign_bdtopo3.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_contours_iris() {
+           // Create popups.
+             ign_contours_iris.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_geodesie() {
+           // Create popups.
+             ign_geodesie.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_parcellaire_express2() {
+           // Create popups.
+             ign_parcellaire_express2.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_planign2() {
+           // Create popups.
+             ign_planign2.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_route500() {
+           // Create popups.
+             ign_route500.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_rpg2() {
+           // Create popups.
+             ign_rpg2.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_scan1000() {
+           // Create popups.
+             ign_scan1000.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
+          function attachPopups_ign_scanreg() {
+           // Create popups.
+             ign_scanreg.eachLayer(function popUp (layer) {
+
+               var props = layer.feature.properties;
+               var out = [];
+               if (props){
+                 for(var key in props){
+                   if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+                     if (layer.feature.properties[key] != "")  {
+                     var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+                     out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+                     }
+                   }
+                 }
+               }
+               layer.bindPopup(out.join("<br />"), {
+                maxWidth : 1500
+            })
+             });
+          };
         var baseMaps = {
-              "BDFORET": ign_bdforet,
-              "BDORTHO": ign_bdortho,
-              "BDPARCELLAIRE": ign_bdparcellaire,
-              "BDTOPO": ign_bdtopo,
-              "DNSB-HAIES": ign_dnsb_haies,
-              "ORTHOHR": ign_orthohr,
-              "PARCELLAIRE EXPRESS": ign_parcellaire_express,
-              "PLANIGN": ign_planign,
-              "RGEALTI": ign_rgealti
+              "DEP - BDFORET": ign_bdforet,
+              "DEP - BDORTHO": ign_bdortho,
+              "DEP - BDPARCELLAIRE": ign_bdparcellaire,
+              "DEP - BDTOPO": ign_bdtopo,
+              "DEP - DNSB-HAIES": ign_dnsb_haies,
+              "DEP - ORTHOHR": ign_orthohr,
+              "DEP - PARCELLAIRE-EXPRESS": ign_parcellaire_express,
+              "DEP - PLANIGN": ign_planign,
+              "DEP - RGEALTI": ign_rgealti,
+
+              "REGION - BDTOPO ": ign_bdtopo2,
+              "REGION - RPG": ign_rpg,
+              "REGION - SCAN50-HISTORIQUE": ign_scan50_historique,
+              "REGION - SCANEM40K": ign_scanem40k,
+
+              "FR - ADMIN-EXPRESS": ign_admin_express,
+              "FR - BDALTI": ign_bdalti,
+              "FR - GEOFLA": ign_geofla,
+              "FR - BDPR": ign_bdpr,
+              "FR - BDTOPO": ign_bdtopo3,
+              "FR - CONTOURS-IRIS": ign_contours_iris,
+              "FR - GEODESIE": ign_geodesie,
+              "FR - PARCELLAIRE_EXPRESS": ign_parcellaire_express2,
+              "FR - PLANIGN": ign_planign2,
+              "FR - ROUTE500": ign_route500,
+              "FR - RPG": ign_rpg2,
+              "FR - SCAN1000": ign_scan1000,
+              "FR - SCANREG": ign_scanreg
+
             };
 
         L.control.layers(baseMaps,null,{collapsed:false}).addTo(map);
