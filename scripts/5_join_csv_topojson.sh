@@ -44,7 +44,7 @@ for val in ${ARRAY[@]}; do
               test="field$i"
               column_json+=',"lien'$i'":"'${!test}'"'
         }
-        sed -i '' 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$TYPE"_"$value'.json'
+        sed -i 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$TYPE"_"$value'.json'
         #echo 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$TYPE"_"$value'.json'
     done
 
