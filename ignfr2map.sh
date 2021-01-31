@@ -15,6 +15,7 @@ LOG_FILE_ABS="$(realpath "$LOG_FILE")"
 TEMP_FOLDER_ABS="$(realpath "$TEMP_FOLDER")"
 IFS="," read -a ARRAY_DEPARTEMENTS <<< $LI_DEPARTEMENTS
 IFS="," read -a ARRAY_REGIONS <<< $LI_REGIONS
+IFS="," read -a ARRAY_FRANCE <<< $LI_FRANCE
 
 # on informe l'utilisateur
 echo "---------- Configuration ----------" >> "$LOG_FILE_ABS"
@@ -34,6 +35,5 @@ source scripts/2_departements.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP
 echo -e "\n\n---------- Extraction de liens par régions ----------"  >> "$LOG_FILE_ABS"
 source scripts/2_regions.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP_FOLDER_ABS/2_regions $LI_REGIONS >> "$LOG_FILE_ABS"
 
-# echo -e "\n\n---------- Extraction de liens pour la France ----------"  >> "$LOG_FILE_ABS"
-# source scripts/2_departements.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP_FOLDER_ABS/2_departements $LI_DEPARTEMENTS >> "$LOG_FILE_ABS"
-
+echo -e "\n\n---------- Extraction de liens pour la France ----------"  >> "$LOG_FILE_ABS"
+source scripts/2_france.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP_FOLDER_ABS/2_france $LI_FRANCE >> "$LOG_FILE_ABS"
