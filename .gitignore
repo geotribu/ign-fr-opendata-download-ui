@@ -10,3 +10,4 @@ _temp/
 *.geojson
 !templates/*.geojson
 *.zip
+result/
