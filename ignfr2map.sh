@@ -36,3 +36,6 @@ source scripts/2_regions.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP_FOLD
 
 echo -e "\n\n---------- Extraction de liens pour la France ----------"  >> "$LOG_FILE_ABS"
 source scripts/2_france.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP_FOLDER_ABS/2_france $LI_FRANCE >> "$LOG_FILE_ABS"
+
+echo -e "\n\n---------- Filtrage des liens (doublons...) ----------"  >> "$LOG_FILE_ABS"
+source scripts/3_filtered_csv.sh "$TEMP_FOLDER_ABS" $TEMP_FOLDER_ABS/3_filtered_csv >> "$LOG_FILE_ABS"
