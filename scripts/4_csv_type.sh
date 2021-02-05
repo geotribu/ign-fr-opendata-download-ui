@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # quatrième étape : Permet de créer des fichiers par catégrorie
 
 # Le petit manuel
@@ -9,24 +9,24 @@ if [ "$1" == "-h" ] ; then
 fi
 
 # Arguments
-TYPE=$1
+SCALE=$1
 SOURCE_FILE=$2
 OUTPUT_DIR=$3
-IFS="," read -a ARRAY_DEPARTEMENTS <<< $4
+IFS="," read -a ARRAY_PRODUITS <<< $4
 
 # Création du répertoire parent
 [ -d $OUTPUT_DIR ] || mkdir -p $OUTPUT_DIR
 
 
 # Permet de créer des fichiers par catégorie
-for val in ${ARRAY_DEPARTEMENTS[@]}; do
-   echo $val
+for val in ${ARRAY_PRODUITS[@]}; do
+   echo "Extraction des liens du produit $val à l'échelle $SCALE"
    value="$(tr [A-Z] [a-z] <<< "${val//-/_}")"
-   grep -E "$val" $SOURCE_FILE | awk '{ printf("%s,'$val'\n", $0); }' | sort -s -k2,2 -t, > $OUTPUT_DIR/$value'_'$TYPE'.csv'
-   awk -F',' -v OFS=',' '{if(a!=$2){printf (a!="")?"\n"$2:$2;a=$2} printf "%s%s",OFS,$1}END{}' $OUTPUT_DIR/$value'_'$TYPE'.csv' > $OUTPUT_DIR/$value'_'$TYPE'_transposition.csv' # Transposition des tableaux
+   grep -E "$val" $SOURCE_FILE | awk '{ printf("%s,'$val'\n", $0); }' | sort -s -k2,2 -t, > $OUTPUT_DIR/$value'_'$SCALE'.csv'
+   awk -F',' -v OFS=',' '{if(a!=$2){printf (a!="")?"\n"$2:$2;a=$2} printf "%s%s",OFS,$1}END{}' $OUTPUT_DIR/$value'_'$SCALE'.csv' > $OUTPUT_DIR/$value'_'$SCALE'_transposition.csv' # Transposition des tableaux
 
 
-   count_column=$(head -2 $OUTPUT_DIR/$value'_'$TYPE'_transposition.csv' | tail -1 |tr '\,' '\n' |wc -l)
+   count_column=$(head -2 $OUTPUT_DIR/$value'_'$SCALE'_transposition.csv' | tail -1 |tr '\,' '\n' |wc -l)
    column=""
    column_sql=""
    for ((i=1; i<=($count_column); i++)) {
