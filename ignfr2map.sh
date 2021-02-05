@@ -13,12 +13,14 @@ fi
 # on construit nos variables
 LOG_FILE_ABS="$(realpath "$LOG_FILE")"
 TEMP_FOLDER_ABS="$(realpath "$TEMP_FOLDER")"
+IFS="," read -a ARRAY_PRODUITS <<< $LI_PRODUITS
 IFS="," read -a ARRAY_DEPARTEMENTS <<< $LI_DEPARTEMENTS
 IFS="," read -a ARRAY_REGIONS <<< $LI_REGIONS
 
 # on informe l'utilisateur
 echo "---------- Configuration ----------" >> "$LOG_FILE_ABS"
 echo "Les fichiers intermédiaires seront stockés dans : $TEMP_FOLDER_ABS" >> "$LOG_FILE_ABS"
+echo "Nombre de produits configurés : ${#ARRAY_PRODUITS[@]}" >> "$LOG_FILE_ABS"
 echo "Nombre de départements configurés : ${#ARRAY_DEPARTEMENTS[@]}" >> "$LOG_FILE_ABS"
 echo "Nombre de régions configurées : ${#ARRAY_REGIONS[@]}" >> "$LOG_FILE_ABS"
 echo "Fichier de journalisation (log) : $LOG_FILE_ABS"
