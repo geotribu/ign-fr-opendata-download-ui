@@ -13,12 +13,14 @@ fi
 # on construit nos variables
 LOG_FILE_ABS="$(realpath "$LOG_FILE")"
 TEMP_FOLDER_ABS="$(realpath "$TEMP_FOLDER")"
+IFS="," read -a ARRAY_PRODUITS <<< $LI_PRODUITS
 IFS="," read -a ARRAY_DEPARTEMENTS <<< $LI_DEPARTEMENTS
 IFS="," read -a ARRAY_REGIONS <<< $LI_REGIONS
 
 # on informe l'utilisateur
 echo "---------- Configuration ----------" >> "$LOG_FILE_ABS"
 echo "Les fichiers intermédiaires seront stockés dans : $TEMP_FOLDER_ABS" >> "$LOG_FILE_ABS"
+echo "Nombre de produits configurés : ${#ARRAY_PRODUITS[@]}" >> "$LOG_FILE_ABS"
 echo "Nombre de départements configurés : ${#ARRAY_DEPARTEMENTS[@]}" >> "$LOG_FILE_ABS"
 echo "Nombre de régions configurées : ${#ARRAY_REGIONS[@]}" >> "$LOG_FILE_ABS"
 echo "Fichier de journalisation (log) : $LOG_FILE_ABS"
@@ -39,3 +41,8 @@ source scripts/2_france.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP_FOLDE
 
 echo -e "\n\n---------- Filtrage des liens (doublons...) ----------"  >> "$LOG_FILE_ABS"
 source scripts/3_filtered_csv.sh "$TEMP_FOLDER_ABS" $TEMP_FOLDER_ABS/3_filtered_csv >> "$LOG_FILE_ABS"
+
+echo -e "\n\n---------- Création de fichiers par produit (BD ORTHO, PLAN...) ----------"  >> "$LOG_FILE_ABS"
+source scripts/4_csv_type.sh "departement" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_par_dep_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS >> "$LOG_FILE_ABS"
+source scripts/4_csv_type.sh "region" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_par_regions_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS >> "$LOG_FILE_ABS"
+source scripts/4_csv_type.sh "france" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_france_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS >> "$LOG_FILE_ABS"
