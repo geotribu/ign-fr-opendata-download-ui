@@ -37,7 +37,7 @@ for val in ${ARRAY[@]}; do
     echo $count_column
 
     column_list=""
-    for ((i=1; i<=($count_column); i++)) {
+    for ((i=1; i<=$count_column; i++)) {
         column_list+="field"$i" "
     }
     echo $column_list
@@ -46,7 +46,7 @@ for val in ${ARRAY[@]}; do
 
     (cat $SOURCE_DIR/$value'_'$SCALE'_transposition.csv'; echo) | while IFS=, read -r $column_list; do
         column_json=""
-        for ((i=1; i<=($count_column); i++)) {
+        for ((i=1; i<=$count_column; i++)) {
               test="field$i"
               column_json+=',"lien'$i'":"'${!test}'"'
         }
