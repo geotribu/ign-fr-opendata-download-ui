@@ -33,14 +33,14 @@ for val in ${ARRAY[@]}; do
    echo $val
    value="$(tr [A-Z] [a-z] <<< "${val//-/_}")"
 
-    count_column=$(awk -F'\,' '{print NF}' _temp/4_csv_type/$value'_'$SCALE'_transposition.csv' | sort -nu | tail -n 1)
+    count_column=$(awk -F'\,' '{print NF}' '_temp/4_csv_type/'$value'_'$SCALE'_transposition.csv' | sort -nu | tail -n 1)
 
     column_list=""
     for ((i=1; i<=($count_column); i++)) {
         column_list+="field"$i" "
     }
 
-    cp $TEMPLATES_DIR/$SCALE'-avec-outre-mer.json' $OUTPUT_DIR/$SCALE"_"$value'.json'
+    cp "$TEMPLATES_DIR/$SCALE-avec-outre-mer.json" "$OUTPUT_DIR/$SCALE_$value.json"
 
     (cat $SOURCE_DIR/$value'_'$SCALE'_transposition.csv'; echo) | while IFS=, read -r $column_list; do
         column_json=""
@@ -48,7 +48,7 @@ for val in ${ARRAY[@]}; do
               test="field$i"
               column_json+=',"lien'$i'":"'${!test}'"'
         }
-        sed -i 's~,\"DEP\":\"'$field1'\"~,\"DEP\":\"'$field1'\"'${column_json}'~g' output/departement_$value.json
+        sed -i 's~,\"DEP\":\"'$field1'\"~,\"DEP\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/departement_$value.json
     done <  _temp/4_csv_type/$value'_transposition.csv'
 
 done

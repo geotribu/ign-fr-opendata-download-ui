@@ -1,3 +1,4 @@
+#!/bin/bash
 # sixième étape : Permet de créer l'index.html
 
 # Le petit manuel
