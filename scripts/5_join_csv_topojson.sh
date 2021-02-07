@@ -44,13 +44,13 @@ for val in ${ARRAY[@]}; do
 
     cp "$TEMPLATES_DIR/$SCALE-avec-outre-mer.json" "$OUTPUT_DIR/$SCALE_$value.json"
 
-    # (cat $SOURCE_DIR/$value'_'$SCALE'_transposition.csv'; echo) | while IFS=, read -r $column_list; do
-    #     column_json=""
-    #     for ((i=1; i<=($count_column); i++)) {
-    #           test="field$i"
-    #           column_json+=',"lien'$i'":"'${!test}'"'
-    #     }
-    #     sed -i 's~,\"DEP\":\"'$field1'\"~,\"DEP\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/departement_$value.json
-    # done <  _temp/4_csv_type/$value'_transposition.csv'
+    (cat $SOURCE_DIR/$value'_'$SCALE'_transposition.csv'; echo) | while IFS=, read -r $column_list; do
+        column_json=""
+        for ((i=1; i<=($count_column); i++)) {
+              test="field$i"
+              column_json+=',"lien'$i'":"'${!test}'"'
+        }
+        sed -i 's~,\"DEP\":\"'$field1'\"~,\"DEP\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/departement_$value.json
+    done <  _temp/4_csv_type/$value'_transposition.csv'
 
 done
