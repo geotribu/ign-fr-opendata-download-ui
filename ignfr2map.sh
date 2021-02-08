@@ -15,7 +15,9 @@ LOG_FILE_ABS="$(realpath "$LOG_FILE")"
 FINAL_FOLDER_ABS="$(realpath "$RESULT_FOLDER")"
 TEMP_FOLDER_ABS="$(realpath "$TEMP_FOLDER")"
 TEMPLATES_FOLDER_ABS="$(realpath "$TEMPLATES_FOLDER")"
-IFS="," read -a ARRAY_PRODUITS <<< $LI_PRODUITS
+IFS="," read -a ARRAY_PRODUITS_DEPARTEMENTS <<< $LI_PRODUITS_DEPARTEMENTS
+IFS="," read -a ARRAY_PRODUITS_REGIONS <<< $LI_PRODUITS_REGIONS
+IFS="," read -a ARRAY_PRODUITS_FRANCE <<< $LI_PRODUITS_FRANCE
 IFS="," read -a ARRAY_DEPARTEMENTS <<< $LI_DEPARTEMENTS
 IFS="," read -a ARRAY_REGIONS <<< $LI_REGIONS
 
@@ -23,15 +25,17 @@ IFS="," read -a ARRAY_REGIONS <<< $LI_REGIONS
 echo "---------- Configuration ----------" >> "$LOG_FILE_ABS"
 echo "Les fichiers finaux seront stockés dans : $FINAL_FOLDER_ABS" >> "$LOG_FILE_ABS"
 echo "Les fichiers intermédiaires seront stockés dans : $TEMP_FOLDER_ABS" >> "$LOG_FILE_ABS"
-echo "Nombre de produits configurés : ${#ARRAY_PRODUITS[@]}" >> "$LOG_FILE_ABS"
 echo "Nombre de départements configurés : ${#ARRAY_DEPARTEMENTS[@]}" >> "$LOG_FILE_ABS"
+echo "Nombre de produits configurés pour les départements : ${#ARRAY_PRODUITS_DEPARTEMENTS[@]}" >> "$LOG_FILE_ABS"
 echo "Nombre de régions configurées : ${#ARRAY_REGIONS[@]}" >> "$LOG_FILE_ABS"
+echo "Nombre de produits configurés pour les régions : ${#ARRAY_PRODUITS_REGIONS[@]}" >> "$LOG_FILE_ABS"
+echo "Nombre de produits configurés pour la France entière : ${#ARRAY_PRODUITS_FRANCE[@]}" >> "$LOG_FILE_ABS"
 echo "Fichier de journalisation (log) : $LOG_FILE_ABS"
 
 # c'est partiiiiiiiii
 echo -e "\n\n---------- Démarrage du script ----------" >> "$LOG_FILE_ABS"
 echo "Scraping du site de l'IGN pour extraire tous les liens"
-# source scripts/1_scraper.sh $SOURCE_URL "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" >> "$LOG_FILE_ABS"
+source scripts/1_scraper.sh $SOURCE_URL "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" >> "$LOG_FILE_ABS"
 
 echo -e "\n\n---------- Extraction de liens par départements ----------"  >> "$LOG_FILE_ABS"
 source scripts/2_departements.sh "$TEMP_FOLDER_ABS/1_scraping/1_liens.txt" $TEMP_FOLDER_ABS/2_departements $LI_DEPARTEMENTS >> "$LOG_FILE_ABS"
@@ -46,11 +50,11 @@ echo -e "\n\n---------- Filtrage des liens (doublons...) ----------"  >> "$LOG_F
 source scripts/3_filtered_csv.sh "$TEMP_FOLDER_ABS" $TEMP_FOLDER_ABS/3_filtered_csv >> "$LOG_FILE_ABS"
 
 echo -e "\n\n---------- Création de fichiers par produit (BD ORTHO, PLAN...) ----------"  >> "$LOG_FILE_ABS"
-source scripts/4_csv_type.sh "departements" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_par_dep_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS >> "$LOG_FILE_ABS"
-source scripts/4_csv_type.sh "regions" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_par_regions_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS >> "$LOG_FILE_ABS"
-source scripts/4_csv_type.sh "france" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_france_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS >> "$LOG_FILE_ABS"
+source scripts/4_csv_type.sh "departements" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_par_dep_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS_DEPARTEMENTS >> "$LOG_FILE_ABS"
+source scripts/4_csv_type.sh "regions" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_par_regions_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS_REGIONS >> "$LOG_FILE_ABS"
+source scripts/4_csv_type.sh "france" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_france_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS_FRANCE >> "$LOG_FILE_ABS"
 
 echo -e "\n\n---------- Jointure des CSV avec les TopoJSON ----------"  >> "$LOG_FILE_ABS"
-source scripts/5_join_csv_topojson.sh "departements" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS >> "$LOG_FILE_ABS"
-source scripts/5_join_csv_topojson.sh "regions" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS >> "$LOG_FILE_ABS"
-source scripts/5_join_csv_topojson.sh "france" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS >> "$LOG_FILE_ABS"
+source scripts/5_join_csv_topojson.sh "departements" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_DEPARTEMENTS >> "$LOG_FILE_ABS"
+# source scripts/5_join_csv_topojson.sh "regions" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_REGIONS >> "$LOG_FILE_ABS"
+# source scripts/5_join_csv_topojson.sh "france" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_FRANCE >> "$LOG_FILE_ABS"
