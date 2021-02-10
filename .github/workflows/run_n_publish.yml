@@ -18,6 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - name: Set up Python
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: 3.8
+
       - name: Rename env file
         run: mv example.env .env
 
@@ -29,3 +34,6 @@ jobs:
 
       - name: List final output
         run: ls -R final/
+
+      - name: Deploy to GitHub Pages
+        run: ghp-import --force --no-jekyll --push final
