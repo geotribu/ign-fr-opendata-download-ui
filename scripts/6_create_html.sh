@@ -7,9 +7,11 @@ if [ "$1" == "-h" ] ; then
     echo "Show this help: ./`basename $0` -h"
     exit 0
 fi
-################################################################################################################################################################
+
+OUTPUT_DIR=$7
+
+# #############################################################################################################################################################
 # Arguments
-TYPE_DEP=$1
 IFS="," read -a ARRAY_INDEX_DEP <<< $2
 
 VAR1_DEP=""
@@ -21,7 +23,7 @@ for val_dep in ${ARRAY_INDEX_DEP[@]}; do
 
 VAR3_DEP+=${DEP}
 
-VAR1_DEP+=$(echo "var ign_"$value_dep"=omnivore.topojson(\'output/departements_"$value_dep".json\').on(\"ready\", function() {attachPopups_ign_"$value_dep"();});\n")
+VAR1_DEP+=$(echo "var ign_"$value_dep"=omnivore.topojson(\'json/departements_"$value_dep".json\').on(\"ready\", function() {attachPopups_ign_"$value_dep"();});\n")
 VAR2_DEP+=$(echo "\"DEP - "$val_dep"\": ign_"$value_dep",\n")
 
 read -r -d '' DEP <<EOI
@@ -54,7 +56,6 @@ done
 
 ################################################################################################################################################################
 
-TYPE_REGION=$3
 IFS="," read -a ARRAY_INDEX_REGION <<< $4
 
 VAR1_REGION=""
@@ -66,7 +67,7 @@ for val_region in ${ARRAY_INDEX_REGION[@]}; do
 
 VAR3_REGION+=${REGION}
 
-VAR1_REGION+=$(echo "var ign_"$value_region"=omnivore.topojson(\'output/regions_"$value_region".json\').on(\"ready\", function() {attachPopups_ign_"$value_region"();});\n")
+VAR1_REGION+=$(echo "var ign_"$value_region"=omnivore.topojson(\'json/regions_"$value_region".json\').on(\"ready\", function() {attachPopups_ign_"$value_region"();});\n")
 VAR2_REGION+=$(echo "\"REGION - "$val_region"\": ign_"$value_region",\n")
 
 read -r -d '' REGION <<EOI
@@ -99,7 +100,6 @@ done
 
 ################################################################################################################################################################
 # Arguments
-TYPE_FR=$5
 IFS="," read -a ARRAY_INDEX_FR <<< $6
 
 VAR1_FR=""
@@ -111,7 +111,7 @@ for val_fr in ${ARRAY_INDEX_FR[@]}; do
 
 VAR3_FR+=${FR}
 
-VAR1_FR+=$(echo "var ign_"$value_fr"=omnivore.topojson(\'output/france_"$value_fr".json\').on(\"ready\", function() {attachPopups_ign_"$value_fr"();});\n")
+VAR1_FR+=$(echo "var ign_"$value_fr"=omnivore.topojson(\'json/france_"$value_fr".json\').on(\"ready\", function() {attachPopups_ign_"$value_fr"();});\n")
 VAR2_FR+=$(echo "\"FR - "$val_fr"\": ign_"$value_fr",\n")
 
 read -r -d '' FR <<EOI
@@ -144,4 +144,4 @@ done
 
 sed 's|REPLACE_FILE_DEP|'"$VAR1_DEP"'|g; s|REPLACE_TITLE_DEP|'"$VAR2_DEP"'|g; s|REPLACE_POPUP_DEP|'"$VAR3_DEP"'|g; s|REPLACE_POPUP_DEPREPLACE_POPUP_DEP|\&\&|g;
 s|REPLACE_FILE_REGION|'"$VAR1_REGION"'|g; s|REPLACE_TITLE_REGION|'"$VAR2_REGION"'|g; s|REPLACE_POPUP_REGION|'"$VAR3_REGION"'|g; s|REPLACE_POPUP_REGIONREPLACE_POPUP_REGION|\&\&|g;
-s|REPLACE_FILE_FR|'"$VAR1_FR"'|g; s|REPLACE_TITLE_FR|'"$VAR2_FR"'|g; s|REPLACE_POPUP_FR|'"$VAR3_FR"'|g; s|REPLACE_POPUP_FRREPLACE_POPUP_FR|\&\&|g;'  templates/index_model.html > index.html
+s|REPLACE_FILE_FR|'"$VAR1_FR"'|g; s|REPLACE_TITLE_FR|'"$VAR2_FR"'|g; s|REPLACE_POPUP_FR|'"$VAR3_FR"'|g; s|REPLACE_POPUP_FRREPLACE_POPUP_FR|\&\&|g;'  templates/index_model.html > "$OUTPUT_DIR"/index.html

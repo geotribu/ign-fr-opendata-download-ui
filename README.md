@@ -1,6 +1,8 @@
 # Script de génération d'une carte par départements des liens OpenData de l'IGN France
 
-## Configuration (En cours)
+![Run and publish](https://github.com/geotribu/ign-fr-opendata-download-ui/workflows/Run%20and%20publish/badge.svg)
+
+## Configuration
 
 Copier le fichier `example.env` en `.env` et adapter les paramètres si besoin.
 
@@ -26,8 +28,8 @@ Exemple de carte en ligne [ici](https://geotribu.github.io/ign-fr-opendata-downl
 2. Extraction des fichiers par département, région et pour la France
 3. Nettoyage des liens (format, doublons)
 4. Mise en forme des données avant jointure
-5. Jointure avec les topojson 
-6. A VENIR : Création automatique du fichier index.html
+5. Jointure avec les TopoJSON
+6. Création automatique du fichier index.html
 
 ## Crédits
 
