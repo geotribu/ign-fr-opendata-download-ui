@@ -36,3 +36,5 @@ Exemple de carte en ligne [ici](https://geotribu.github.io/ign-fr-opendata-downl
 - [Florian Boret](https://static.geotribu.fr/team/fbor/) & [Julien Moura](https://static.geotribu.fr/team/jmou/), [Geotribu](https://static.geotribu.fr)
 - [ouverture des données de l'IGN](https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html)
 - contours (métropole et outre-mer) : ADMIN-EXPRESS convertis en topojson avec [https://mapshaper.org](https://mapshaper.org)
+
+![Carte IGN Geotribu](https://cdn.geotribu.fr/img/articles-blog-rdp/articles/ign_opendata_map/ign_opendata_map_html_rendu.png "Capture d'écran de la carte déployée sur GitHub Pages")
