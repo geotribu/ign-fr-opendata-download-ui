@@ -24,5 +24,8 @@ jobs:
       - name: Run it
         run: bash ./ignfr2map.sh
 
-      - name: List
+      - name: List temp
         run: ls -R _temp/
+
+      - name: List final output
+        run: ls -R final/
