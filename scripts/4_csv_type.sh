@@ -3,7 +3,7 @@
 
 # Le petit manuel
 if [ "$1" == "-h" ] ; then
-    echo "Usage: ./`basename $0` departement _temp/3_filtered_csv/3_liens_par_dep_clean_ext.csv _temp/4_csv_type \"BDTOPO,PLANIGN,ORTHOHR,BDFORET,DNSB-HAIES,PARCELLAIRE_EXPRESS,BDPARCELLAIRE,RGEALTI,BDORTHO\""
+    echo "Usage: ./`basename $0` departements _temp/3_filtered_csv/3_liens_par_dep_clean_ext.csv _temp/4_csv_type \"BDTOPO,PLANIGN,ORTHOHR,BDFORET,DNSB-HAIES,PARCELLAIRE_EXPRESS,BDPARCELLAIRE,RGEALTI,BDORTHO\""
     echo "Show this help: ./`basename $0` -h"
     exit 0
 fi
