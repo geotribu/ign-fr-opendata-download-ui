@@ -56,5 +56,5 @@ source scripts/4_csv_type.sh "france" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_fr
 
 echo -e "\n\n---------- Jointure des CSV avec les TopoJSON ----------"  >> "$LOG_FILE_ABS"
 source scripts/5_join_csv_topojson.sh "departements" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_DEPARTEMENTS >> "$LOG_FILE_ABS"
-# source scripts/5_join_csv_topojson.sh "regions" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_REGIONS >> "$LOG_FILE_ABS"
-# source scripts/5_join_csv_topojson.sh "france" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_FRANCE >> "$LOG_FILE_ABS"
+source scripts/5_join_csv_topojson.sh "regions" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_REGIONS >> "$LOG_FILE_ABS"
+source scripts/5_join_csv_topojson.sh "france" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_FRANCE >> "$LOG_FILE_ABS"

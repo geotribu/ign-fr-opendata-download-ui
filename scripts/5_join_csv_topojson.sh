@@ -13,7 +13,7 @@ SCALE=$1
 SOURCE_DIR=$2
 TEMPLATES_DIR=$3
 OUTPUT_DIR=$4
-IFS="," read -a ARRAY <<< $5
+IFS="," read -a ARRAY_PRODUITS <<< $5
 
 if [ "$SCALE" == "departements" ] ; then
 STYPE="DEP"
@@ -29,11 +29,13 @@ fi
 
 echo "$SCALE $STYPE $SOURCE_DIR $TEMPLATES_DIR $OUTPUT_DIR"
 
-for val in ${ARRAY[@]}; do
-   echo $val
-   value="$(tr [A-Z] [a-z] <<< "${val//-/_}")"
+for produit in ${ARRAY_PRODUITS[@]}; do
+   echo $produit
+   value="$(tr [A-Z] [a-z] <<< "${produit//-/_}")"
 
-    count_column=$(awk -F'\,' '{print NF}' '_temp/4_csv_type/'$value'_'$SCALE'_transposition.csv' | sort -nu | tail -n 1)
+    echo $value
+
+    count_column=$(awk -F',' '{print NF}' '_temp/4_csv_type/'$value'_'$SCALE'_transposition.csv' | sort -nu | tail -n 1)
     echo $count_column
 
     column_list=""
@@ -42,7 +44,9 @@ for val in ${ARRAY[@]}; do
     }
     echo $column_list
 
-    cp "$TEMPLATES_DIR/$SCALE-avec-outre-mer.json" "$OUTPUT_DIR/$SCALE_$value.json"
+    echo $OUTPUT_DIR/$SCALE"_"$value".json"
+    cp $TEMPLATES_DIR/$SCALE"-avec-outre-mer.json" $OUTPUT_DIR/$SCALE"_"$value".json"
+
 
     (cat $SOURCE_DIR/$value'_'$SCALE'_transposition.csv'; echo) | while IFS=, read -r $column_list; do
         column_json=""
@@ -50,8 +54,8 @@ for val in ${ARRAY[@]}; do
               test="field$i"
               column_json+=',"lien'$i'":"'${!test}'"'
         }
-        sed -i 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$SCALE"_"$value'.json'
-        echo 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$SCALE"_"$value'.json'
+        sed -i 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$SCALE"_"$value".json"
+        echo 's~,\"'$STYPE'\":\"'$field1'\"~,\"'$STYPE'\":\"'$field1'\"'${column_json}'~g' $OUTPUT_DIR/$SCALE"_"$value".json"
     done
 
 done
