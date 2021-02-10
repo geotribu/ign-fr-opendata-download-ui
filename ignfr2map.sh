@@ -55,6 +55,12 @@ source scripts/4_csv_type.sh "regions" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_p
 source scripts/4_csv_type.sh "france" $TEMP_FOLDER_ABS/3_filtered_csv/3_liens_france_clean_ext.csv $TEMP_FOLDER_ABS/4_csv_type $LI_PRODUITS_FRANCE >> "$LOG_FILE_ABS"
 
 echo -e "\n\n---------- Jointure des CSV avec les TopoJSON ----------"  >> "$LOG_FILE_ABS"
-source scripts/5_join_csv_topojson.sh "departements" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_DEPARTEMENTS >> "$LOG_FILE_ABS"
-source scripts/5_join_csv_topojson.sh "regions" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_REGIONS >> "$LOG_FILE_ABS"
-source scripts/5_join_csv_topojson.sh "france" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS $LI_PRODUITS_FRANCE >> "$LOG_FILE_ABS"
+source scripts/5_join_csv_topojson.sh "departements" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS/json $LI_PRODUITS_DEPARTEMENTS >> "$LOG_FILE_ABS"
+source scripts/5_join_csv_topojson.sh "regions" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS/json $LI_PRODUITS_REGIONS >> "$LOG_FILE_ABS"
+source scripts/5_join_csv_topojson.sh "france" $TEMP_FOLDER_ABS/4_csv_type $TEMPLATES_FOLDER_ABS $FINAL_FOLDER_ABS/json $LI_PRODUITS_FRANCE >> "$LOG_FILE_ABS"
+
+echo -e "\n\n---------- Jointure avec index.html ----------"  >> "$LOG_FILE_ABS"
+bash scripts/6_create_html.sh departements $LI_PRODUITS_DEPARTEMENTS regions $LI_PRODUITS_REGIONS france $LI_PRODUITS_FRANCE $RESULT_FOLDER
+
+echo -e "Copying favicon"
+cp $TEMPLATES_FOLDER_ABS/favicon.png $FINAL_FOLDER_ABS/favicon.png
