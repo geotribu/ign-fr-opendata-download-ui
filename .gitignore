@@ -12,3 +12,7 @@ _temp/
 !templates/*.geojson
 index.html
 result/
+*.json
+!templates/*.json
+*.png
+!templates/*.png
