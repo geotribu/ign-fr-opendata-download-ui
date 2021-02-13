@@ -34,7 +34,9 @@ Exemple de carte en ligne [ici](https://geotribu.github.io/ign-fr-opendata-downl
 ## Crédits
 
 - [Florian Boret](https://static.geotribu.fr/team/fbor/) & [Julien Moura](https://static.geotribu.fr/team/jmou/), [Geotribu](https://static.geotribu.fr)
-- [ouverture des données de l'IGN](https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html)
-- contours (métropole et outre-mer) : ADMIN-EXPRESS convertis en topojson avec [https://mapshaper.org](https://mapshaper.org)
+- [Ouverture des données de l'IGN](https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html)
+- Contours (métropole et outre-mer) :
+  - Source : [ADMIN-EXPRESS](https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express) complété par l'ajout du [découpage administratif des COM](https://www.data.gouv.fr/fr/datasets/decoupage-administratif-des-com-st-martin-et-st-barthelemy-format-admin-express/) 
+  - Conversion en topojson avec [https://mapshaper.org](https://mapshaper.org)
 
 ![Carte IGN Geotribu](https://cdn.geotribu.fr/img/articles-blog-rdp/articles/ign_opendata_map/ign_opendata_map_html_rendu.png "Capture d'écran de la carte déployée sur GitHub Pages")
