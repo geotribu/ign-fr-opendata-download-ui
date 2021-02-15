@@ -2,6 +2,8 @@
 
 ![Run and publish](https://github.com/geotribu/ign-fr-opendata-download-ui/workflows/Run%20and%20publish/badge.svg)
 
+Consulter l'article détaillant la démarche de ce projet sur Geotribu : <https://static.geotribu.fr/articles/2021/2021-02-15_ignfr2map_carte_liens_IGN_open-data_7_etapes/>.
+
 ## Configuration
 
 Copier le fichier `example.env` en `.env` et adapter les paramètres si besoin.
@@ -33,7 +35,7 @@ Il est également possible de le déclencher manuellement :
 
 ![github action manual trigger](https://cdn.geotribu.fr/img/articles-blog-rdp/articles/ign_opendata_map/github_action_workflow_manual_trigger.png "Déclencher manuellement l'exécution par GitHub Actions")
 
-
+----
 
 ## Etapes
 
