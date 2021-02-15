@@ -1,70 +1,83 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Carte des données IGN</title>
-    <link rel="shortcut icon" href="favicon.png">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.0/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet@1.7.0/dist/leaflet.js"></script>
-    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+<head>
+  <meta charset="utf-8">
+  <title>Carte de téléchargement des données ouvertes IGN France</title>
+  <meta name="description"
+    content="Carte des liens de téléchargements des données ouvertes de l'IGN France. By Geotribu.">
+  <meta name="keywords" content="IGN,open data,Geotribu,carte,téléchargement">
+  <meta name="author" content="Geotribu">
+  <!-- OpenGraph -->
+  <meta name="og:title" property="og:title" content="Carte des données ouvertes de l'IGN - par Geotribu">
+  <meta property="og:image" content="https://cdn.geotribu.fr/img/articles-blog-rdp/articles/ign_opendata_map/ign_opendata_map_tweet_ign.png">
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Geotribu" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.0/dist/leaflet.js"></script>
+  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
 
 
 
-      <style>
-      body {
-           padding: 0;
-           margin: 0;
-       }
-       html, body, #divcarte {
-           height: 100%;
-           width: 100%;
-       }
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body,
+    #divcarte {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="divcarte">
+
+  </div>
 
 
-      </style>
+  <script type="text/javascript">
 
-  </head>
+    //pour ajouter la carte et les tuiles vectorielles
+    var map = L.map("divcarte").setView([13.52, 2.07501], 4);
 
-  <body>
-    <div id="divcarte">
-
-    </div>
-
-
-    <script type="text/javascript">
-
-      //pour ajouter la carte et les tuiles vectorielles
-      var map = L.map("divcarte").setView([13.52, 2.07501], 4);
-
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-			     attribution: 'Fond de carte par les contributeurs <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-         }).addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: 'Fond de carte par les contributeurs <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+    }).addTo(map);
 
 
-REPLACE_FILE_DEP
+    REPLACE_FILE_DEP
 
-REPLACE_FILE_REGION
+    REPLACE_FILE_REGION
 
-REPLACE_FILE_FR
+    REPLACE_FILE_FR
 
-REPLACE_POPUP_DEP
-REPLACE_POPUP_REGION
-REPLACE_POPUP_FR
+    REPLACE_POPUP_DEP
+    REPLACE_POPUP_REGION
+    REPLACE_POPUP_FR
 
-        var baseMaps = {
-REPLACE_TITLE_DEP
+    var baseMaps = {
+      REPLACE_TITLE_DEP
 
 REPLACE_TITLE_REGION
 
 REPLACE_TITLE_FR
 
 
-            };
+    };
 
-        L.control.layers(baseMaps,null,{collapsed:false}).addTo(map);
+    L.control.layers(baseMaps, null, { collapsed: false }).addTo(map);
 
 
-    </script>
+  </script>
 
-  </body>
+</body>
+
 </html>
