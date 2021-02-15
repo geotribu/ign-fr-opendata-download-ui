@@ -26,25 +26,43 @@
 
 
   <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
+      body {
+           padding: 0;
+           margin: 0;
+       }
+       html, body {
+           height: 100%;
+           width: 100%;
+       }
 
-    html,
-    body,
-    #divcarte {
-      height: 100%;
-      width: 100%;
-    }
+       #divcarte {
+           height: calc(100% - 50px);
+       }
+       #header {
+         height:50px;
+         padding-left:30px;
+         text-align: Left;
+         background: #2E494E;
+         color: white;
+         font-size: clamp(12px, 2vw, 25px);
+         font-family: Arial, sans-serif;
+       }
+       a
+       {
+         color: white;
+       }
+
   </style>
 
-</head>
+  </head>
 
-<body>
-  <div id="divcarte">
+  <body>
+    <div id="header">
+       <a href="https://static.geotribu.fr"><b>GeoTribu</b></a> > ign2map : une solution alternative pour <a href="https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html">accéder aux données libres publiées par l'IGN.</a>
+     </div>
+    <div id="divcarte">
 
-  </div>
+    </div>
 
 
   <script type="text/javascript">
