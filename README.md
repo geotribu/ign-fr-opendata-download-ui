@@ -27,7 +27,7 @@ Placer les fichiers sur un serveur web et ouvrir le fichier `index.html` dans un
 Le script est configuré pour être automatiquement exécuté le premier jour de chaque mois et déployer la carte sur GitHub Pages. Voir la carte en ligne [ici](https://geotribu.github.io/ign-fr-opendata-download-ui/index.html).  
 Il est également possible de le déclencher manuellement :
 
-1. Se rendre sur [la page de l'Action correspondante](https://github.com/geotribu/ign-fr-opendata-download-ui/actions?query=workflt'en as besoinow%3A"Run+and+publish")
+1. Se rendre sur [la page de l'Action correspondante](https://github.com/geotribu/ign-fr-opendata-download-ui/actions?query=workflten%20as%20besoinow%3A%22Run+and+publish%22)
 2. Dans la liste de gauche des *workflows*, sélectionner `Run and publish`
 3. En regard, dérouler la liste déroulante et sélectionner `Run workflow`
 
