@@ -23,7 +23,7 @@ for val_dep in ${ARRAY_INDEX_DEP[@]}; do
 
 VAR3_DEP+=${DEP}
 
-VAR1_DEP+=$(echo "var ign_"$value_dep"=omnivore.topojson(\'json/departements_"$value_dep".json\').on(\"ready\", function() {attachPopups_ign_dep_"$value_dep"();});\n")
+VAR1_DEP+=$(echo "var ign_dep_"$value_dep"=omnivore.topojson(\'json/departements_"$value_dep".json\').on(\"ready\", function() {attachPopups_ign_dep_"$value_dep"();});\n")
 VAR2_DEP+=$(echo "\"DEP - "$val_dep"\": ign_dep_"$value_dep",\n")
 
 read -r -d '' DEP <<EOI
@@ -67,7 +67,7 @@ for val_region in ${ARRAY_INDEX_REGION[@]}; do
 
 VAR3_REGION+=${REGION}
 
-VAR1_REGION+=$(echo "var ign_"$value_region"=omnivore.topojson(\'json/regions_"$value_region".json\').on(\"ready\", function() {attachPopups_ign_reg_"$value_region"();});\n")
+VAR1_REGION+=$(echo "var ign_reg_"$value_region"=omnivore.topojson(\'json/regions_"$value_region".json\').on(\"ready\", function() {attachPopups_ign_reg_"$value_region"();});\n")
 VAR2_REGION+=$(echo "\"REGION - "$val_region"\": ign_reg_"$value_region",\n")
 
 read -r -d '' REGION <<EOI
@@ -111,7 +111,7 @@ for val_fr in ${ARRAY_INDEX_FR[@]}; do
 
 VAR3_FR+=${FR}
 
-VAR1_FR+=$(echo "var ign_"$value_fr"=omnivore.topojson(\'json/france_"$value_fr".json\').on(\"ready\", function() {attachPopups_ign_fr_"$value_fr"();});\n")
+VAR1_FR+=$(echo "var ign_fr_"$value_fr"=omnivore.topojson(\'json/france_"$value_fr".json\').on(\"ready\", function() {attachPopups_ign_fr_"$value_fr"();});\n")
 VAR2_FR+=$(echo "\"FR - "$val_fr"\": ign_fr_"$value_fr",\n")
 
 read -r -d '' FR <<EOI
