@@ -1,8 +1,11 @@
-# Script de génération d'une carte par départements des liens OpenData de l'IGN France
+# Script de génération d'une carte des liens OpenData de l'IGN France
 
 ![Run and publish](https://github.com/geotribu/ign-fr-opendata-download-ui/workflows/Run%20and%20publish/badge.svg)
 
-Consulter l'article détaillant la démarche de ce projet sur Geotribu : <https://static.geotribu.fr/articles/2021/2021-02-15_ignfr2map_carte_liens_IGN_open-data_7_etapes/>.
+Consulter les 2 articles détaillant la démarche de ce projet sur Geotribu : 
+
+- [Du site à la carte en 7 étapes](https://static.geotribu.fr/articles/2021/2021-02-15_ignfr2map_carte_liens_IGN_open-data_7_etapes/)
+- [Automatisation des scripts et déploiement de la carte](https://static.geotribu.fr/articles/2021/2021-02-19_ignfr2map_automatisation_deploiement/).
 
 ## Configuration
 
