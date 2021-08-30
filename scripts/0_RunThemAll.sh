@@ -7,7 +7,7 @@ bash scripts/3_filtered_csv.sh _temp/3_filtered_csv
 bash scripts/4_csv_type.sh departements _temp/3_filtered_csv/3_liens_par_dep_clean_ext.csv _temp/4_csv_type BDTOPO,PLANIGN,ORTHOHR,BDFORET,DNSB-HAIES,PARCELLAIRE_EXPRESS,BDPARCELLAIRE,RGEALTI,BDORTHO
 bash scripts/4_csv_type.sh france _temp/3_filtered_csv/3_liens_france_clean_ext.csv _temp/4_csv_type ADMIN-EXPRESS,GEOFLA,BDPR,BDTOPO,BDALTI,CONTOURS-IRIS,GEODESIE,PARCELLAIRE_EXPRESS,PLANIGN,ROUTE500,RPG,SCAN1000,SCANREG
 bash scripts/4_csv_type.sh regions _temp/3_filtered_csv/3_liens_par_regions_clean_ext.csv _temp/4_csv_type SCAN50_HISTORIQUE,SCANEM40K,RPG,BDTOPO
-bash scripts/5_join_csv_topojson.sh departements _temp/4_csv_type output BDTOPO,PLANIGN,ORTHOHR,BDFORET,DNSB-HAIES,PARCELLAIRE_EXPRESS,BDPARCELLAIRE,RGEALTI,BDORTHO
+bash scripts/5_join_csv_topojson.sh departements _temp/4_csv_type output BDTOPO,PLANIGN,ORTHOHR,BDFORET,DNSB-HAIES,PARCELLAIRE_EXPRESS,BDPARCELLAIRE,RGEALTI,BDORTHO,BDALTI
 bash scripts/5_join_csv_topojson.sh regions _temp/4_csv_type output SCAN50_HISTORIQUE,SCANEM40K,RPG,BDTOPO
-bash scripts/5_join_csv_topojson.sh france _temp/4_csv_type output ADMIN-EXPRESS,GEOFLA,BDPR,BDTOPO,BDALTI,CONTOURS-IRIS,GEODESIE,PARCELLAIRE_EXPRESS,PLANIGN,ROUTE500,RPG,SCAN1000,SCANREG
+bash scripts/5_join_csv_topojson.sh france _temp/4_csv_type output ADMIN-EXPRESS,GEOFLA,BDPR,BDTOPO,CONTOURS-IRIS,GEODESIE,PARCELLAIRE_EXPRESS,PLANIGN,ROUTE500,RPG,SCAN1000,SCANREG
 bash scripts/6_create_html.sh departements BDTOPO,PLANIGN,ORTHOHR,BDFORET,DNSB-HAIES,PARCELLAIRE_EXPRESS,BDPARCELLAIRE,RGEALTI,BDORTHO regions SCAN50_HISTORIQUE,SCANEM40K,RPG,BDTOPO france ADMIN-EXPRESS,GEOFLA,BDPR,BDTOPO,BDALTI,CONTOURS-IRIS,GEODESIE,PARCELLAIRE_EXPRESS,PLANIGN,ROUTE500,RPG,SCAN1000,SCANREG
