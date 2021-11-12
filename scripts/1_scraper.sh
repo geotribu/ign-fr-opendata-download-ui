@@ -15,7 +15,7 @@ OUTPUT_FILE=$2
 # si le dossier parent n'existe pas, on le crée    
 [ -d "$OUTPUT_FILE" ] || mkdir -p "$(dirname "$OUTPUT_FILE")"
 # on supprime d'abord les anciens fichiers
-rm "$OUTPUT_FILE"
+rm --force "$OUTPUT_FILE"
 
 IFS="," read -a ARRAY_URL <<< $SOURCE_URL
 for val in ${ARRAY_URL[@]}; do
