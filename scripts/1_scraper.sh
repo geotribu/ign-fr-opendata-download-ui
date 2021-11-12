@@ -21,7 +21,7 @@ IFS="," read -a ARRAY_URL <<< $SOURCE_URL
 for val in ${ARRAY_URL[@]}; do
 echo "Téléchargement de la page : $val"
 # télécharge la page HTML (stream), extrait les liens et le stockent dans un fichier texte
-curl "$val" | \
+curl -k "$val" | \
     grep -oE '\b(https?|ftp|file)://[-A-Za-z0-9+&@# /%?=~_|!:,.;]*[-A-Za-z0-9+&@# /%=~_|]' >> "$OUTPUT_FILE"
 
 done
