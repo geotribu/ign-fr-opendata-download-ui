@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+  <!-- Metatags -->
+  <meta charset="utf-8">
+  <title>Carte de téléchargement des données ouvertes IGN France</title>
+  <meta name="description"
+    content="Carte des liens de téléchargements des données ouvertes de l'IGN France. By Geotribu.">
+  <meta name="keywords" content="IGN,open data,Geotribu,carte,téléchargement">
+  <meta name="author" content="Geotribu">
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Carte des données ouvertes de l'IGN - par Geotribu">
+  <meta property="og:image" content="https://cdn.geotribu.fr/img/articles-blog-rdp/articles/ign_opendata_map/ign_opendata_map_tweet_ign.png">
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Geotribu" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.0/dist/leaflet.js"></script>
+  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+
+
+  <style>
+      body {
+           padding: 0;
+           margin: 0;
+       }
+       html, body {
+           height: 100%;
+           width: 100%;
+       }
+
+       #divcarte {
+           height: calc(100% - 50px);
+       }
+       #header {
+         height:50px;
+         padding-left:30px;
+         text-align: Left;
+         background: #2E494E;
+         color: white;
+         font-size: clamp(12px, 2vw, 25px);
+         font-family: Arial, sans-serif;
+       }
+       a
+       {
+         color: white;
+       }
+
+  </style>
+
+  </head>
+
+  <body>
+    <div id="header">
+       <a href="https://static.geotribu.fr"><b>GeoTribu</b></a> > ign2map : une solution alternative pour <a href="https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html">accéder aux données libres publiées par l'IGN.</a>
+     </div>
+    <div id="divcarte">
+
+    </div>
+
+
+  <script type="text/javascript">
+
+    //pour ajouter la carte et les tuiles vectorielles
+    var map = L.map("divcarte").setView([13.52, 2.07501], 4);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: 'Fond de carte par les contributeurs <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+    }).addTo(map);
+
+
+    var ign_dep_bdforet=omnivore.topojson('json/departements_bdforet.json').on("ready", function() {attachPopups_ign_dep_bdforet();});
+var ign_dep_orthohr_1_0_irc=omnivore.topojson('json/departements_orthohr_1_0_irc.json').on("ready", function() {attachPopups_ign_dep_orthohr_1_0_irc();});
+var ign_dep_bdortho_2_0_irc=omnivore.topojson('json/departements_bdortho_2_0_irc.json').on("ready", function() {attachPopups_ign_dep_bdortho_2_0_irc();});
+var ign_dep_orthohr_1_0_rvb=omnivore.topojson('json/departements_orthohr_1_0_rvb.json').on("ready", function() {attachPopups_ign_dep_orthohr_1_0_rvb();});
+var ign_dep_bdortho_2_0_rvb=omnivore.topojson('json/departements_bdortho_2_0_rvb.json').on("ready", function() {attachPopups_ign_dep_bdortho_2_0_rvb();});
+var ign_dep_bdorthohisto=omnivore.topojson('json/departements_bdorthohisto.json').on("ready", function() {attachPopups_ign_dep_bdorthohisto();});
+var ign_dep_bdparcellaire=omnivore.topojson('json/departements_bdparcellaire.json').on("ready", function() {attachPopups_ign_dep_bdparcellaire();});
+var ign_dep_bdtopo=omnivore.topojson('json/departements_bdtopo.json').on("ready", function() {attachPopups_ign_dep_bdtopo();});
+var ign_dep_dnsb_haies=omnivore.topojson('json/departements_dnsb_haies.json').on("ready", function() {attachPopups_ign_dep_dnsb_haies();});
+var ign_dep_parcellaire_express=omnivore.topojson('json/departements_parcellaire_express.json').on("ready", function() {attachPopups_ign_dep_parcellaire_express();});
+var ign_dep_planign=omnivore.topojson('json/departements_planign.json').on("ready", function() {attachPopups_ign_dep_planign();});
+var ign_dep_rgealti=omnivore.topojson('json/departements_rgealti.json').on("ready", function() {attachPopups_ign_dep_rgealti();});
+var ign_dep_bdalti=omnivore.topojson('json/departements_bdalti.json').on("ready", function() {attachPopups_ign_dep_bdalti();});
+
+
+    var ign_reg_bdtopo=omnivore.topojson('json/regions_bdtopo.json').on("ready", function() {attachPopups_ign_reg_bdtopo();});
+var ign_reg_rpg=omnivore.topojson('json/regions_rpg.json').on("ready", function() {attachPopups_ign_reg_rpg();});
+var ign_reg_scanem40k=omnivore.topojson('json/regions_scanem40k.json').on("ready", function() {attachPopups_ign_reg_scanem40k();});
+var ign_reg_scan50_historique=omnivore.topojson('json/regions_scan50_historique.json').on("ready", function() {attachPopups_ign_reg_scan50_historique();});
+
+
+    var ign_fr_admin_express=omnivore.topojson('json/france_admin_express.json').on("ready", function() {attachPopups_ign_fr_admin_express();});
+var ign_fr_bdpr=omnivore.topojson('json/france_bdpr.json').on("ready", function() {attachPopups_ign_fr_bdpr();});
+var ign_fr_bdtopo=omnivore.topojson('json/france_bdtopo.json').on("ready", function() {attachPopups_ign_fr_bdtopo();});
+var ign_fr_contours_iris=omnivore.topojson('json/france_contours_iris.json').on("ready", function() {attachPopups_ign_fr_contours_iris();});
+var ign_fr_geodesie=omnivore.topojson('json/france_geodesie.json').on("ready", function() {attachPopups_ign_fr_geodesie();});
+var ign_fr_geofla=omnivore.topojson('json/france_geofla.json').on("ready", function() {attachPopups_ign_fr_geofla();});
+var ign_fr_parcellaire_express=omnivore.topojson('json/france_parcellaire_express.json').on("ready", function() {attachPopups_ign_fr_parcellaire_express();});
+var ign_fr_planign=omnivore.topojson('json/france_planign.json').on("ready", function() {attachPopups_ign_fr_planign();});
+var ign_fr_route500=omnivore.topojson('json/france_route500.json').on("ready", function() {attachPopups_ign_fr_route500();});
+var ign_fr_rpg=omnivore.topojson('json/france_rpg.json').on("ready", function() {attachPopups_ign_fr_rpg();});
+var ign_fr_scan1000=omnivore.topojson('json/france_scan1000.json').on("ready", function() {attachPopups_ign_fr_scan1000();});
+var ign_fr_scanreg=omnivore.topojson('json/france_scanreg.json').on("ready", function() {attachPopups_ign_fr_scanreg();});
+
+
+    function attachPopups_ign_dep_bdforet() {
+ign_dep_bdforet.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdforet() {
+ign_dep_bdforet.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_orthohr_1_0_irc() {
+ign_dep_orthohr_1_0_irc.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_orthohr_1_0_irc() {
+ign_dep_orthohr_1_0_irc.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdortho_2_0_irc() {
+ign_dep_bdortho_2_0_irc.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdortho_2_0_irc() {
+ign_dep_bdortho_2_0_irc.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_orthohr_1_0_rvb() {
+ign_dep_orthohr_1_0_rvb.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_orthohr_1_0_rvb() {
+ign_dep_orthohr_1_0_rvb.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdortho_2_0_rvb() {
+ign_dep_bdortho_2_0_rvb.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdortho_2_0_rvb() {
+ign_dep_bdortho_2_0_rvb.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdorthohisto() {
+ign_dep_bdorthohisto.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdorthohisto() {
+ign_dep_bdorthohisto.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdparcellaire() {
+ign_dep_bdparcellaire.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdparcellaire() {
+ign_dep_bdparcellaire.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdtopo() {
+ign_dep_bdtopo.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdtopo() {
+ign_dep_bdtopo.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_dnsb_haies() {
+ign_dep_dnsb_haies.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_dnsb_haies() {
+ign_dep_dnsb_haies.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_parcellaire_express() {
+ign_dep_parcellaire_express.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_parcellaire_express() {
+ign_dep_parcellaire_express.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_planign() {
+ign_dep_planign.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_planign() {
+ign_dep_planign.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_rgealti() {
+ign_dep_rgealti.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_rgealti() {
+ign_dep_rgealti.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_dep_bdalti() {
+ign_dep_bdalti.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_DEP_M" && key != "NOM_DEP" && key != "INSEE_DEP" && key != "INSEE_REG" && key != "INSEE_REG" && key != "DEP" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};
+    function attachPopups_ign_reg_bdtopo() {
+ign_reg_bdtopo.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_reg_bdtopo() {
+ign_reg_bdtopo.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_reg_rpg() {
+ign_reg_rpg.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_reg_rpg() {
+ign_reg_rpg.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_reg_scanem40k() {
+ign_reg_scanem40k.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_reg_scanem40k() {
+ign_reg_scanem40k.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_reg_scan50_historique() {
+ign_reg_scan50_historique.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "NOM_REG_M" && key != "NOM_REG" && key != "INSEE_REG" && key != "REG" && key != "lien1")  {      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};
+    function attachPopups_ign_fr_admin_express() {
+ign_fr_admin_express.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_admin_express() {
+ign_fr_admin_express.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_bdpr() {
+ign_fr_bdpr.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_bdpr() {
+ign_fr_bdpr.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_bdtopo() {
+ign_fr_bdtopo.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_bdtopo() {
+ign_fr_bdtopo.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_contours_iris() {
+ign_fr_contours_iris.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_contours_iris() {
+ign_fr_contours_iris.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_geodesie() {
+ign_fr_geodesie.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_geodesie() {
+ign_fr_geodesie.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_geofla() {
+ign_fr_geofla.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_geofla() {
+ign_fr_geofla.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_parcellaire_express() {
+ign_fr_parcellaire_express.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_parcellaire_express() {
+ign_fr_parcellaire_express.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_planign() {
+ign_fr_planign.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_planign() {
+ign_fr_planign.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_route500() {
+ign_fr_route500.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_route500() {
+ign_fr_route500.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_rpg() {
+ign_fr_rpg.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_rpg() {
+ign_fr_rpg.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_scan1000() {
+ign_fr_scan1000.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_scan1000() {
+ign_fr_scan1000.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};function attachPopups_ign_fr_scanreg() {
+ign_fr_scanreg.eachLayer(function popUp (layer) {
+var props = layer.feature.properties;
+var out = [];
+if (props){
+  for(var key in props){
+    if (key != "id" && key != "ID" && key != "FR" && key != "NOM" && key != "lien1")  {
+      if (layer.feature.properties[key] != "")  {
+      var targetValue = layer.feature.properties[key].substr(layer.feature.properties[key].lastIndexOf('/') + 1);
+      out.push(/*key+": "+*/'<a href="'+layer.feature.properties[key]+'">'+targetValue+'</a>');
+      }
+    }
+  }
+}
+layer.bindPopup(out.join("<br />"), {
+ maxWidth : 1500
+})
+});
+};
+
+    var baseMaps = {
+      "DEP - BDFORET": ign_dep_bdforet,
+"DEP - ORTHOHR_1-0_IRC": ign_dep_orthohr_1_0_irc,
+"DEP - BDORTHO_2-0_IRC": ign_dep_bdortho_2_0_irc,
+"DEP - ORTHOHR_1-0_RVB": ign_dep_orthohr_1_0_rvb,
+"DEP - BDORTHO_2-0_RVB": ign_dep_bdortho_2_0_rvb,
+"DEP - BDORTHOHisto": ign_dep_bdorthohisto,
+"DEP - BDPARCELLAIRE": ign_dep_bdparcellaire,
+"DEP - BDTOPO": ign_dep_bdtopo,
+"DEP - DNSB-HAIES": ign_dep_dnsb_haies,
+"DEP - PARCELLAIRE_EXPRESS": ign_dep_parcellaire_express,
+"DEP - PLANIGN": ign_dep_planign,
+"DEP - RGEALTI": ign_dep_rgealti,
+"DEP - BDALTI": ign_dep_bdalti,
+
+
+"REGION - BDTOPO": ign_reg_bdtopo,
+"REGION - RPG": ign_reg_rpg,
+"REGION - SCANEM40K": ign_reg_scanem40k,
+"REGION - SCAN50_HISTORIQUE": ign_reg_scan50_historique,
+
+
+"FR - ADMIN-EXPRESS": ign_fr_admin_express,
+"FR - BDPR": ign_fr_bdpr,
+"FR - BDTOPO": ign_fr_bdtopo,
+"FR - CONTOURS-IRIS": ign_fr_contours_iris,
+"FR - GEODESIE": ign_fr_geodesie,
+"FR - GEOFLA": ign_fr_geofla,
+"FR - PARCELLAIRE_EXPRESS": ign_fr_parcellaire_express,
+"FR - PLANIGN": ign_fr_planign,
+"FR - ROUTE500": ign_fr_route500,
+"FR - RPG": ign_fr_rpg,
+"FR - SCAN1000": ign_fr_scan1000,
+"FR - SCANREG": ign_fr_scanreg,
+
+
+
+    };
+
+    L.control.layers(baseMaps, null).addTo(map);
+
+
+  </script>
+
+</body>
+
+</html>
